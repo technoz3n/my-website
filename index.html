@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hi its me techy</title>
+    <link rel="icon" type="image/png" href="theworldmachine.png" sizes="96x96">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+    <script>
+        async function fetchSpotifyLanyard() {
+            const discordId = '1152050115964567563';
+            try {
+                const res = await fetch(`https://api.lanyard.rest/v1/users/${discordId}`);
+                const data = await res.json();
+                if (data.success && data.data.listening_to_spotify) {
+                    const spotify = data.data.spotify;
+                    document.querySelector('.track-title').textContent = spotify.song.toLowerCase();
+                    document.querySelector('.track-artist').textContent = `${spotify.artist.toLowerCase()} — ${spotify.album.toLowerCase()}`;
+                } else {
+                    document.querySelector('.track-title').textContent = 'nothing';
+                    document.querySelector('.track-artist').textContent = 'nada';
+                }
+            } catch (err) {
+                console.error('lanyard fetch error:', err);
+            }
+        }
+        fetchSpotifyLanyard();
+        setInterval(fetchSpotifyLanyard, 10000);
+    </script>
+</head>
+
+<body>
+
+    <div id="websiteContainer">
+        <header class="profile-header">
+            <img src="theworldmachine.png" id="logo" alt="the world machine logo">
+            <div class="header-info">
+                <h1 class="profile-title">the world machine</h1>
+                <span class="status-tag">blahblahblahbahhhh</span>
+            </div>
+        </header>
+
+        <main class="content-layout">
+            <div class="column-main">
+                <section class="adw-card">
+                    <div class="card-header">
+                        <span class="card-title">about me</span>
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            haiiii, if you came from github or wherever the hell, you can find whatever the hell i even
+                            do on this site here.
+                        </p>
+                        <hr>
+                        <aside style="padding: 11px;">
+                            some things about me:
+                        </aside>
+                        <p>
+                            im a highschool student who has basically been programming and forking since 2018/19, which
+                            is <span id="days-since-2019">...</span> days ago!
+                            i started out with simple stuff like scratch. then i moved onto remixing glitch projects
+                            because i was interested in arras.io private servers at the time
+                            (which are mainly html/css/js) and then from THERE i moved onto minecraft bedrock edition
+                            with the javascript api which i learned syntax and formatting for years
+                            (notice how most of my shit isnt standalone and is game related?) and FINALLY once i got my
+                            hands on linux, i started experimenting more with js/css/html, python, bash
+                            and java
+                        </p>
+                        <hr>
+                        <aside style="padding: 11px;">
+                            some extra stuff:
+                        </aside>
+                        <p>
+                            - i specialize in making hyper niche things for issues or stuff nobody
+                            really needs or asked for, its my specialty.
+                        </p>
+                        <p>
+                            - i forget a lot of unimportant things to me as
+                            soon as i get home
+                        </p>
+                        <p>
+                            - i cant program from scratch i specialize in remixing or forking other peoples work or
+                            using
+                            foss stuff
+                        </p>
+                        <p>
+                            - i have a bad habit of customizing everything to my little liking
+                        </p>
+                        <p>
+                            - i like music a whole lot
+                        </p>
+                        <aside style="color: #ffd000; padding: 5px;">
+                            <strong>⚠️ warning:</strong> i am not a cat
+                        </aside>
+                        <hr>
+                        <aside style="padding: 5px;">
+                            <strong>now,</strong> about music:
+                        </aside>
+                        <p>i <strong>REALLY</strong> like the weeknd, ive been listening to abel for about <span
+                                id="days-since-xo">...</span> days now (im a HUGE fan of his older stuff, im talking
+                            house of balloons, king of the fall, beauty behind the madness, kiss land, and anything
+                            before after hours i guess you could say)</p>
+                        <p><strong>buuut</strong> i dont only like R&B, im also a huge fan of heaven pierce her (arsi
+                            patala), tool, victor
+                            love (master boot record/keygen church), that handsome devil (godforbid), occasionally
+                            vocaloid when im in the mood, aphex twin, the prodigy, suicidal tendencies, clairon,
+                            femtanyl, deftones, tally hall, limp bizkit, pitchshifter, the list goes on and on honestly
+                        </p>
+                    </div>
+                </section>
+            </div>
+
+            <div class="column-sidebar">
+                <section class="adw-card">
+                    <div class="card-header">
+                        <span class="card-title">im currently listening to</span>
+                    </div>
+                    <div class="now-playing-box">
+                        <div class="track-info">
+                            <span class="track-title">nothing</span>
+                            <span class="track-artist">nada</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+</body>
+<script>
+    function getDate(year, month, day) {
+            const dateToGet = new Date(year, month, day);
+            const today = new Date();
+            const diffTime = today - dateToGet;
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            return diffDays;
+        }
+        document.getElementById('days-since-2019').textContent = getDate(2019, 0, 1);
+        document.getElementById('days-since-xo').textContent = getDate(2025, 9, 24);
+</script>
+</html>
