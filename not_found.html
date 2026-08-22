@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 /// not found</title>
+    <link rel="icon" type="image/png" href="theworldmachine.png" sizes="96x96">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body class="error-page">
+	<div id="enterOverlay">
+        <div class="overlay-content">
+            <span class="overlay-text">[ click anywhere to enter ]</span>
+        </div>
+    </div>
+
+    <div id="websiteContainer">
+        <header id="mainHeader">
+            <div class="header-logo-text">
+                <a href="index.html" title="back home">
+                    <img src="theworldmachine.png" id="logo" alt="The World Machine character logo">
+                </a>
+                <div class="header-text">
+                    <h1 class="header-title">404 /// page not found</h1>
+                    <span class="status-tag">8-1 /// HURTBREAK WONDERLAND</span>
+                </div>
+            </div>
+        </header>
+
+        <main id="mainContent">
+            <section class="panel">
+                <h2>// lost in the spiral</h2>
+                <div class="bio-box">
+                    <p>wow you spiraled too far down. this path leads nowhere, so if you were looking for something it isnt going to be here.</p>
+                </div>
+                <div class="links-row" style="margin-top: 15px;">
+                    <a href="index.html">back to safety</a>
+                </div>
+            </section>
+
+            <section class="panel" id="musicSection">
+                <h2>// now playing</h2>
+                <div class="now-playing-box">
+                    <div class="track-info">
+                        <span class="track-title">Spiral Out (Keep Going)</span>
+                        <span class="track-artist">Heaven Pierce Her — ULTRAKILL: Fraud</span>
+                    </div>
+                    <audio id="bgAudio" controls loop autoplay class="retro-audio">
+                        <source src="8-1_Clean.wav" type="audio/wav">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script>
+        const overlay = document.getElementById('enterOverlay');
+        const audio = document.getElementById('bgAudio');
+
+        overlay.addEventListener('click', () => {
+            audio.play().catch(err => console.log('audio playback error:', err));
+            overlay.classList.add('fade-out');
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 500);
+        });
+    </script>
+</body>
+</html>
