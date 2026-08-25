@@ -8,56 +8,47 @@
     <link rel="icon" type="image/png" href="theworldmachine.png" sizes="96x96">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="main.css">
-    <script>
-        async function fetchSpotifyLanyard() {
-            const discordId = '1152050115964567563';
-            try {
-                const res = await fetch(`https://api.lanyard.rest/v1/users/${discordId}`);
-                const data = await res.json();
-                if (data.success && data.data.listening_to_spotify) {
-                    const spotify = data.data.spotify;
-                    document.querySelector('.track-title').textContent = spotify.song.toLowerCase();
-                    document.querySelector('.track-artist').textContent = `${spotify.artist.toLowerCase()} — ${spotify.album.toLowerCase()}`;
-                } else {
-                    document.querySelector('.track-title').textContent = 'nothing';
-                    document.querySelector('.track-artist').textContent = 'nada';
-                }
-            } catch (err) {
-                console.error('lanyard fetch error:', err);
-            }
-        }
-        fetchSpotifyLanyard();
-        setInterval(fetchSpotifyLanyard, 10000);
-    </script>
+    <script src="site.js" defer></script>
 </head>
 
 <body>
 
     <div id="websiteContainer">
+        <div class="titlebar">
+            <div class="window-dots">
+                <span class="dot-close"></span>
+                <span class="dot-min"></span>
+                <span class="dot-max"></span>
+            </div>
+            <span class="titlebar-label">technoz3n@worldmachine:~/projects$</span>
+            <nav class="view-switcher">
+                <a href="index.html" class="nav-item">about</a>
+                <a href="projects.html" class="nav-item active">projects</a>
+                <a href="socials.html" class="nav-item">socials</a>
+            </nav>
+        </div>
+
         <header class="profile-header">
             <img src="theworldmachine.png" id="logo" alt="the world machine logo">
             <div class="header-info">
                 <h1 class="profile-title">the world machine [projects!]</h1>
                 <span class="status-tag">my projects !!!</span>
             </div>
-            <nav class="nav-links">
-                <a href="index.html" class="nav-item">about</a>
-                <a href="projects.html" class="nav-item active">projects</a>
-                <a href="socials.html" class="nav-item">socials</a>
-            </nav>
         </header>
+
         <section class="adw-card music-banner">
             <div class="now-playing-box-horizontal">
-                <span class="card-title">im currently listening to:</span>
+                <span class="card-title">currently listening</span>
                 <div class="track-info-inline">
                     <span class="track-title">nothing</span>
                     <span class="track-artist">nada</span>
                 </div>
             </div>
         </section>
+
         <main class="content-layout full-width">
             <div class="column-main">
                 <section class="adw-card">
@@ -69,11 +60,20 @@
                             this is a collection of things ive experimented with, fixed, or created. feel free to
                             explore!
                         </p>
-                        <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 12px 0;">
+                        <hr class="card-divider">
+
+                        <div class="repo-filter">
+                            <button class="filter-chip active" data-lang="all">all</button>
+                            <button class="filter-chip" data-lang="python">python</button>
+                            <button class="filter-chip" data-lang="css">css</button>
+                            <button class="filter-chip" data-lang="java">java</button>
+                            <button class="filter-chip" data-lang="javascript">javascript</button>
+                            <button class="filter-chip" data-lang="cpp">c++ / qt</button>
+                        </div>
 
                         <div class="repo-list">
                             <a href="https://github.com/technoz3n/rosepine-discord-fixed" class="repo-row"
-                                target="_blank" rel="noopener noreferrer">
+                                target="_blank" rel="noopener noreferrer" data-lang="css">
                                 <div class="repo-top">
                                     <div class="repo-name-group">
                                         <span class="repo-title">rosepine-discord-fixed</span>
@@ -81,8 +81,8 @@
                                     <span class="repo-badge public">public</span>
                                 </div>
                                 <p class="repo-description">
-                                    fixes sidebar elements and search bar background colors in the rosé pine discord
-                                    theme for vencord/betterdiscord.
+                                    fixes sidebar elements and search bar background colors in the rosé pine
+                                    discord theme for vencord/betterdiscord.
                                 </p>
                                 <div class="repo-meta">
                                     <div class="lang-tag">
@@ -93,7 +93,7 @@
                             </a>
 
                             <a href="https://github.com/technoz3n/win7suite" class="repo-row" target="_blank"
-                                rel="noopener noreferrer">
+                                rel="noopener noreferrer" data-lang="cpp">
                                 <div class="repo-top">
                                     <div class="repo-name-group">
                                         <span class="repo-title">win7suite</span>
@@ -105,13 +105,14 @@
                                 </p>
                                 <div class="repo-meta">
                                     <div class="lang-tag">
-                                        <span class="lang-dot" style="background-color: #f34b7d;"></span>
+                                        <span class="lang-dot cpp"></span>
                                         <span>c++ / qt</span>
                                     </div>
                                 </div>
                             </a>
+
                             <a href="https://github.com/technoz3n/xothemes-discord" class="repo-row" target="_blank"
-                                rel="noopener noreferrer">
+                                rel="noopener noreferrer" data-lang="css">
                                 <div class="repo-top">
                                     <div class="repo-name-group">
                                         <span class="repo-title">xothemes-discord</span>
@@ -120,7 +121,7 @@
                                 </div>
                                 <p class="repo-description">
                                     currently only is for house of balloons, but its planned to be a collection of
-                                    discord themes based on the weeknd eras
+                                    discord themes based on the weeknd eras.
                                 </p>
                                 <div class="repo-meta">
                                     <div class="lang-tag">
@@ -129,8 +130,9 @@
                                     </div>
                                 </div>
                             </a>
+
                             <a href="https://github.com/technoz3n/haitechy" class="repo-row" target="_blank"
-                                rel="noopener noreferrer">
+                                rel="noopener noreferrer" data-lang="java">
                                 <div class="repo-top">
                                     <div class="repo-name-group">
                                         <span class="repo-title">haitechy</span>
@@ -138,7 +140,7 @@
                                     <span class="repo-badge public">public/wip</span>
                                 </div>
                                 <p class="repo-description">
-                                    silly shitpost mass strength mod for minecraft 1.12.2 (forge)
+                                    silly shitpost mass strength mod for minecraft 1.12.2 (forge).
                                 </p>
                                 <div class="repo-meta">
                                     <div class="lang-tag">
@@ -147,8 +149,9 @@
                                     </div>
                                 </div>
                             </a>
+
                             <a href="https://github.com/technoz3n/dotfiles" class="repo-row" target="_blank"
-                                rel="noopener noreferrer">
+                                rel="noopener noreferrer" data-lang="python">
                                 <div class="repo-top">
                                     <div class="repo-name-group">
                                         <span class="repo-title">dotfiles</span>
@@ -156,7 +159,7 @@
                                     <span class="repo-badge public">public/wip</span>
                                 </div>
                                 <p class="repo-description">
-                                    my dotfiles for my linux setup (usually never is finished)
+                                    my dotfiles for my linux setup (usually never is finished).
                                 </p>
                                 <div class="repo-meta">
                                     <div class="lang-tag">
@@ -167,8 +170,9 @@
                                     </div>
                                 </div>
                             </a>
+
                             <a href="https://github.com/technoz3n/wine-app-builder" class="repo-row" target="_blank"
-                                rel="noopener noreferrer">
+                                rel="noopener noreferrer" data-lang="python">
                                 <div class="repo-top">
                                     <div class="repo-name-group">
                                         <span class="repo-title">wine-app-builder</span>
@@ -176,8 +180,8 @@
                                     <span class="repo-badge public">public/wip</span>
                                 </div>
                                 <p class="repo-description">
-                                    a little script/application i wrote that allows for an easy way to turn any .exe
-                                    file into a application on linux with a few clicks!
+                                    a little script/application i wrote that allows for an easy way to turn any
+                                    .exe file into an application on linux with a few clicks!
                                 </p>
                                 <div class="repo-meta">
                                     <div class="lang-tag">
@@ -186,8 +190,9 @@
                                     </div>
                                 </div>
                             </a>
+
                             <a href="https://github.com/technoz3n/desktop-niko" class="repo-row" target="_blank"
-                                rel="noopener noreferrer">
+                                rel="noopener noreferrer" data-lang="python">
                                 <div class="repo-top">
                                     <div class="repo-name-group">
                                         <span class="repo-title">desktop-niko</span>
@@ -195,7 +200,7 @@
                                     <span class="repo-badge private">private</span>
                                 </div>
                                 <p class="repo-description">
-                                    desktop niko oneshot pet for linux (x11)
+                                    desktop niko oneshot pet for linux (x11).
                                 </p>
                                 <div class="repo-meta">
                                     <div class="lang-tag">
@@ -204,8 +209,9 @@
                                     </div>
                                 </div>
                             </a>
-                            <a href="https://github.com/technoz3n/UnlockSkinzShellShockers" class="repo-row" target="_blank"
-                                rel="noopener noreferrer">
+
+                            <a href="https://github.com/technoz3n/UnlockSkinzShellShockers" class="repo-row"
+                                target="_blank" rel="noopener noreferrer" data-lang="javascript">
                                 <div class="repo-top">
                                     <div class="repo-name-group">
                                         <span class="repo-title">unlock-skins-shell-shockers</span>
@@ -213,7 +219,8 @@
                                     <span class="repo-badge private">private</span>
                                 </div>
                                 <p class="repo-description">
-                                    easily unlock specific skins and adjust your fov in shell shockers. borrows code from statefarmclient
+                                    easily unlock specific skins and adjust your fov in shell shockers. borrows
+                                    code from statefarmclient.
                                 </p>
                                 <div class="repo-meta">
                                     <div class="lang-tag">
@@ -222,8 +229,9 @@
                                     </div>
                                 </div>
                             </a>
+
                             <a href="https://github.com/technoz3n/eggutil" class="repo-row" target="_blank"
-                                rel="noopener noreferrer">
+                                rel="noopener noreferrer" data-lang="python">
                                 <div class="repo-top">
                                     <div class="repo-name-group">
                                         <span class="repo-title">eggutil</span>
@@ -231,7 +239,8 @@
                                     <span class="repo-badge private">private</span>
                                 </div>
                                 <p class="repo-description">
-                                    multi-purpose discord bot created by yours truly, never made it to be fully developed though. still contains bugs and issues.
+                                    multi-purpose discord bot created by yours truly, never made it to be fully
+                                    developed though. still contains bugs and issues.
                                 </p>
                                 <div class="repo-meta">
                                     <div class="lang-tag">
@@ -245,6 +254,11 @@
                 </section>
             </div>
         </main>
+
+        <footer class="taskbar">
+            <span class="taskbar-clock" id="taskbar-clock">--:--:--</span>
+            <span>9 repos tracked</span>
+        </footer>
     </div>
 </body>
 

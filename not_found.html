@@ -1,69 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 /// not found</title>
+    <title>404 — segfault</title>
     <link rel="icon" type="image/png" href="theworldmachine.png" sizes="96x96">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="main.css">
+    <script src="site.js" defer></script>
 </head>
-<body class="error-page">
-	<div id="enterOverlay">
-        <div class="overlay-content">
-            <span class="overlay-text">[ click anywhere to enter ]</span>
-        </div>
-    </div>
+
+<body>
 
     <div id="websiteContainer">
-        <header id="mainHeader">
-            <div class="header-logo-text">
-                <a href="index.html" title="back home">
-                    <img src="theworldmachine.png" id="logo" alt="The World Machine character logo">
-                </a>
-                <div class="header-text">
-                    <h1 class="header-title">404 /// page not found</h1>
-                    <span class="status-tag">8-1 /// HURTBREAK WONDERLAND</span>
-                </div>
+        <div class="titlebar">
+            <div class="window-dots">
+                <span class="dot-close"></span>
+                <span class="dot-min"></span>
+                <span class="dot-max"></span>
             </div>
-        </header>
+            <span class="titlebar-label">technoz3n@worldmachine:~$ ./find-page.sh</span>
+            <nav class="view-switcher">
+                <a href="index.html" class="nav-item">about</a>
+                <a href="projects.html" class="nav-item">projects</a>
+                <a href="socials.html" class="nav-item">socials</a>
+            </nav>
+        </div>
 
-        <main id="mainContent">
-            <section class="panel">
-                <h2>// lost in the spiral</h2>
-                <div class="bio-box">
-                    <p>wow you spiraled too far down. this path leads nowhere, so if you were looking for something it isnt going to be here.</p>
-                </div>
-                <div class="links-row" style="margin-top: 15px;">
-                    <a href="index.html">back to safety</a>
-                </div>
-            </section>
-
-            <section class="panel" id="musicSection">
-                <h2>// now playing</h2>
-                <div class="now-playing-box">
-                    <div class="track-info">
-                        <span class="track-title">Spiral Out (Keep Going)</span>
-                        <span class="track-artist">Heaven Pierce Her — ULTRAKILL: Fraud</span>
+        <main class="content-layout full-width">
+            <div class="column-main">
+                <section class="adw-card crash-card">
+                    <div class="crash-glyph" aria-hidden="true">
+                        <span>404</span>
+                        <span>404</span>
+                        <span>404</span>
                     </div>
-                    <audio id="bgAudio" controls loop autoplay class="retro-audio">
-                        <source src="8-1_Clean.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-            </section>
-        </main>
-    </div>
-    <script>
-        const overlay = document.getElementById('enterOverlay');
-        const audio = document.getElementById('bgAudio');
 
-        overlay.addEventListener('click', () => {
-            audio.play().catch(err => console.log('audio playback error:', err));
-            overlay.classList.add('fade-out');
-            setTimeout(() => {
-                overlay.style.display = 'none';
-            }, 500);
-        });
+                    <div class="fetch-data crash-log">
+                        <div>HA! you really think youd find something interesting here!? think again, jackass! youre an idiot /s</div>
+                    </div>
+
+                    <hr class="card-divider">
+
+                    <div class="crash-actions">
+                        <a href="index.html" class="pill-action">force quit → back to desktop</a>
+                        <button class="pill-action pill-ghost" onclick="history.back()">restart previous window</button>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer class="taskbar">
+            <span class="taskbar-clock" id="taskbar-clock">--:--:--</span>
+            <span>1 window not responding</span>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('crash-path').textContent = window.location.pathname;
     </script>
 </body>
+
 </html>

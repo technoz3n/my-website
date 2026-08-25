@@ -8,56 +8,47 @@
     <link rel="icon" type="image/png" href="theworldmachine.png" sizes="96x96">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="main.css">
-    <script>
-        async function fetchSpotifyLanyard() {
-            const discordId = '1152050115964567563';
-            try {
-                const res = await fetch(`https://api.lanyard.rest/v1/users/${discordId}`);
-                const data = await res.json();
-                if (data.success && data.data.listening_to_spotify) {
-                    const spotify = data.data.spotify;
-                    document.querySelector('.track-title').textContent = spotify.song.toLowerCase();
-                    document.querySelector('.track-artist').textContent = `${spotify.artist.toLowerCase()} — ${spotify.album.toLowerCase()}`;
-                } else {
-                    document.querySelector('.track-title').textContent = 'nothing';
-                    document.querySelector('.track-artist').textContent = 'nada';
-                }
-            } catch (err) {
-                console.error('lanyard fetch error:', err);
-            }
-        }
-        fetchSpotifyLanyard();
-        setInterval(fetchSpotifyLanyard, 10000);
-    </script>
+    <script src="site.js" defer></script>
 </head>
 
 <body>
 
     <div id="websiteContainer">
+        <div class="titlebar">
+            <div class="window-dots">
+                <span class="dot-close"></span>
+                <span class="dot-min"></span>
+                <span class="dot-max"></span>
+            </div>
+            <span class="titlebar-label">technoz3n@worldmachine:~/socials$</span>
+            <nav class="view-switcher">
+                <a href="index.html" class="nav-item">about</a>
+                <a href="projects.html" class="nav-item">projects</a>
+                <a href="socials.html" class="nav-item active">socials</a>
+            </nav>
+        </div>
+
         <header class="profile-header">
             <img src="theworldmachine.png" id="logo" alt="the world machine logo">
             <div class="header-info">
                 <h1 class="profile-title">the world machine [socials!]</h1>
                 <span class="status-tag">my socials !!!</span>
             </div>
-            <nav class="nav-links">
-                <a href="index.html" class="nav-item">about</a>
-                <a href="projects.html" class="nav-item">projects</a>
-                <a href="socials.html" class="nav-item active">socials</a>
-            </nav>
         </header>
+
         <section class="adw-card music-banner">
             <div class="now-playing-box-horizontal">
-                <span class="card-title">im currently listening to:</span>
+                <span class="card-title">currently listening</span>
                 <div class="track-info-inline">
                     <span class="track-title">nothing</span>
                     <span class="track-artist">nada</span>
                 </div>
             </div>
         </section>
+
         <main class="content-layout full-width">
             <div class="column-main">
                 <section class="adw-card">
@@ -68,7 +59,7 @@
                         <p>
                             here are some places you may be able to find me online!
                         </p>
-                        <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 12px 0;">
+                        <hr class="card-divider">
 
                         <div class="social-grid">
                             <a href="https://github.com/technoz3n" class="link-row social-link" target="_blank"
@@ -138,6 +129,11 @@
                 </section>
             </div>
         </main>
+
+        <footer class="taskbar">
+            <span class="taskbar-clock" id="taskbar-clock">--:--:--</span>
+            <span>7 links</span>
+        </footer>
     </div>
 </body>
 
