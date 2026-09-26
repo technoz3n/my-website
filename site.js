@@ -1,4 +1,3 @@
-// ---- date counters ----
 function daysSince(year, month, day) {
     const then = new Date(year, month, day);
     const now = new Date();
@@ -17,7 +16,6 @@ function fillDayCounters() {
 }
 fillDayCounters();
 
-// ---- spotify / discord lanyard ----
 async function fetchSpotifyLanyard() {
     const discordId = '1152050115964567563';
     const titleEls = document.querySelectorAll('.track-title');
@@ -41,7 +39,6 @@ async function fetchSpotifyLanyard() {
 fetchSpotifyLanyard();
 setInterval(fetchSpotifyLanyard, 10000);
 
-// ---- taskbar clock ----
 function tickClock() {
     const el = document.getElementById('taskbar-clock');
     if (!el) return;
@@ -51,7 +48,6 @@ function tickClock() {
 tickClock();
 setInterval(tickClock, 1000);
 
-// ---- projects page: language filter chips ----
 function initRepoFilter() {
     const chips = document.querySelectorAll('.filter-chip');
     const rows = document.querySelectorAll('.repo-row');
@@ -69,3 +65,21 @@ function initRepoFilter() {
     });
 }
 initRepoFilter();
+const konamiCode = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+let konamiIndex = 0;
+document.addEventListener('keydown', (e) => {
+  if (e.key === konamiCode[konamiIndex]) {
+    konamiIndex++;
+  } else {
+    konamiIndex = (e.key === konamiCode[0]) ? 1 : 0;
+  }
+
+  if (konamiIndex === konamiCode.length) {
+    konamiIndex = 0;
+    console.log(
+      '%cCONNECTION RE-ESTABLISHED.\n%c/secret.html',
+      'color:#ff1a1a; font-family:monospace; font-size:14px;',
+      'color:#7a0d0d; font-family:monospace; font-size:12px;'
+    );
+  }
+});

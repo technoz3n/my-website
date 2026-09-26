@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ultragreed.</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <style>
+        :root {
+    --bg-color: #0c0c0c;
+    --surface: #1c1c1c;
+    --surface-hover: #373737;
+    --border: #393939;
+    --accent: #bf2c2c;
+    --accent-glow: rgb(251 96 96 / 25%);
+    --text: #e6edf3;
+    --text-dim: #8b949e;
+    --radius-lg: 16px;
+    --radius-md: 10px;
+    --radius-sm: 6px;
+}
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text);
+            font-family: 'Rubik', sans-serif;
+            line-height: 1.5;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 720px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .header-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .title-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .title-icon {
+            color: var(--accent);
+            font-size: 32px;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        p.description {
+            color: var(--text-dim);
+            font-size: 1rem;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--surface-hover);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 10px 16px;
+            border-radius: var(--radius-md);
+            font-family: 'Rubik', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 12px var(--accent-glow);
+            transform: translateY(-1px);
+        }
+
+        .btn.primary {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+        }
+
+        .btn.primary:hover {
+            opacity: 0.9;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .card-header .material-symbols-outlined {
+            color: var(--accent);
+            font-size: 20px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 12px;
+        }
+
+        .feature-item {
+            background: var(--bg-color);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 14px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .feature-item .material-symbols-outlined {
+            color: var(--text-dim);
+            font-size: 20px;
+            margin-top: 2px;
+        }
+
+        .feature-text {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+        }
+
+        .feature-text strong {
+            color: var(--text);
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        code, pre {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        p code, li code {
+            background: var(--bg-color);
+            border: 1px solid var(--border);
+            padding: 2px 6px;
+            border-radius: var(--radius-sm);
+            color: var(--text);
+        }
+
+        pre {
+            background: var(--bg-color);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            overflow-x: auto;
+            color: var(--text-dim);
+        }
+
+        .step-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .step-title {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .step-num {
+            background: var(--surface-hover);
+            border: 1px solid var(--border);
+            color: var(--accent);
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            padding: 10px 0;
+        }
+
+        footer a {
+            color: var(--text-dim);
+            text-decoration: underline;
+        }
+
+        footer a:hover {
+            color: var(--text);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header class="header-card">
+            <div class="title-row">
+                <span class="material-symbols-outlined title-icon">bolt</span>
+                <h1>ultragreed.</h1>
+            </div>
+            <p class="description">
+                a lightweight, real-time discord quest tracking bot that monitors public API endpoints and dispatches formatted webhook alerts directly to your server.
+            </p>
+            <div class="btn-group">
+                <a href="https://github.com/technoz3n/ultragreed" class="btn primary" target="_blank">
+                    <span class="material-symbols-outlined">code</span>
+                    github repo
+                </a>
+                <a href="#quickstart" class="btn">
+                    <span class="material-symbols-outlined">rocket_launch</span>
+                    quickstart
+                </a>
+            </div>
+        </header>
+
+        <section class="card">
+            <div class="card-header">
+                <span class="material-symbols-outlined">grid_view</span>
+                overview & features
+            </div>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <span class="material-symbols-outlined">shield</span>
+                    <div class="feature-text">
+                        <strong>safe polling</strong>
+                        zero internal user-api scraping, preventing token blocks or account flags.
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <span class="material-symbols-outlined">notifications_off</span>
+                    <div class="feature-text">
+                        <strong>quiet seed</strong>
+                        pre-populates existing quests on initial boot to eliminate webhook notification spam.
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <span class="material-symbols-outlined">sync</span>
+                    <div class="feature-text">
+                        <strong>state isolation</strong>
+                        ignores state configuration tracking files to avoid nodemon restart loops.
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <span class="material-symbols-outlined">terminal</span>
+                    <div class="feature-text">
+                        <strong>test command</strong>
+                        includes <code>$testquest</code> to instantly verify webhook rendering and formatting.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card" id="quickstart">
+            <div class="card-header">
+                <span class="material-symbols-outlined">terminal</span>
+                quickstart
+            </div>
+            <div class="step-list">
+                <div class="step">
+                    <div class="step-title">
+                        <span class="step-num">1</span> clone & install
+                    </div>
+                    <pre><code>git clone https://github.com/technoz3n/ultragreed.git
+cd ultragreed
+npm install</code></pre>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">
+                        <span class="step-num">2</span> configure environment (<code>.env</code>)
+                    </div>
+                    <pre><code>BOT_TOKEN=your_discord_bot_token_here
+WEBHOOK_URL=your_discord_webhook_url_here</code></pre>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">
+                        <span class="step-num">3</span> launch bot
+                    </div>
+                    <pre><code># development mode
+npm run dev
+
+# production mode
+npm run start</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>ultragreed is an open-source project by <a href="index.html">techy</a>. not affiliated with discord.</p>
+        </footer>
+
+    </div>
+
+</body>
+
+</html>

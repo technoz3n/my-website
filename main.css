@@ -451,13 +451,12 @@ main .adw-card {
     background: var(--row-bg);
     border: 1px solid var(--border-color);
     border-radius: 8px;
-    text-decoration: none;
     color: var(--text-primary);
-    transition: background 0.15s, border-color 0.15s;
+    transition: border-color 0.15s;
+    height: 100%;
 }
 
 .repo-row:hover {
-    background: var(--accent-dim);
     border-color: var(--border-color-hover);
 }
 
@@ -465,6 +464,54 @@ main .adw-card {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.repo-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    gap: 12px;
+    padding-top: 4px;
+}
+
+.repo-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.repo-btn {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-main);
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.repo-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--border-color-hover);
+    background: var(--surface-alt);
+}
+
+.site-btn {
+    color: var(--accent);
+    border-color: var(--accent-dim);
+    background: var(--accent-soft);
+}
+
+.site-btn:hover {
+    background: var(--accent-dim);
+    color: #ffc9e8;
 }
 
 .repo-name-group {
