@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,7 +25,8 @@
             padding: 0;
         }
 
-        html, body {
+        html,
+        body {
             width: 100vw;
             height: 100vh;
             background-color: var(--bg-main);
@@ -173,6 +175,7 @@
         }
     </style>
 </head>
+
 <body>
     <div id="splash" onclick="enterExperience()">
         <div></div>
@@ -202,23 +205,36 @@
 
         function enterExperience() {
             document.getElementById('splash').classList.add('hidden');
-            video.play();
-            startProgressLoop();
+
+            video.load();
+
+            const playPromise = video.play();
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    document.getElementById('play-btn').textContent = 'pause';
+                    startProgressLoop();
+                }).catch(err => {
+                    console.error('video play failed:', err);
+                    video.muted = true;
+                    document.getElementById('mute-btn').textContent = 'unmute';
+                    video.play();
+                });
+            }
         }
 
         function togglePlay() {
             if (video.paused) {
                 video.play();
-                document.getElementById('play-btn').textContent = 'PAUSE';
+                document.getElementById('play-btn').textContent = 'pause';
             } else {
                 video.pause();
-                document.getElementById('play-btn').textContent = 'PLAY';
+                document.getElementById('play-btn').textContent = 'play';
             }
         }
 
         function toggleMute() {
             video.muted = !video.muted;
-            document.getElementById('mute-btn').textContent = video.muted ? 'UNMUTE' : 'MUTE';
+            document.getElementById('mute-btn').textContent = video.muted ? 'unmute' : 'mute';
         }
 
         function seekVideo(e) {
@@ -254,4 +270,5 @@
         });
     </script>
 </body>
+
 </html>
