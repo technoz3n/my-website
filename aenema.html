@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ænema</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #050507;
+            --accent: #00a6d8;
+            --accent-dim: rgba(0, 166, 216, 0.2);
+            --border: #2a2228;
+            --text-main: #d4ceb8;
+            --text-dim: #8a8578;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            font-family: var(--font-mono);
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        /* Splash overlay */
+        #splash {
+            position: absolute;
+            inset: 0;
+            background: var(--bg-main);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            transition: opacity 0.5s ease, visibility 0.5s;
+        }
+
+        #splash.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .splash-title {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            color: var(--text-main);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .splash-sub {
+            font-size: 11px;
+            color: var(--text-dim);
+            letter-spacing: 2px;
+            border: 1px solid var(--border);
+            padding: 6px 12px;
+            background: #0d0d11;
+        }
+
+        .splash-sub:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        /* Player Container */
+        .player-container {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            border: 1px solid var(--border);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            overflow: hidden;
+        }
+
+        .video-wrapper {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Custom Overlay Controls */
+        .controls-overlay {
+            position: relative;
+            z-index: 10;
+            background: linear-gradient(transparent, rgba(5, 5, 7, 0.95));
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .player-container:hover .controls-overlay {
+            opacity: 1;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 6px;
+            background: var(--border);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--accent);
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        .control-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 11px;
+        }
+
+        .left-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-ctrl {
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            font-family: var(--font-mono);
+            font-size: 11px;
+            padding: 4px 10px;
+            cursor: pointer;
+        }
+
+        .btn-ctrl:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-dim);
+        }
+
+        .time-display {
+            color: var(--text-dim);
+        }
+
+        .watermark {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            font-size: 10px;
+            color: var(--text-dim);
+            letter-spacing: 1px;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Click to enter splash screen -->
+    <div id="splash" onclick="enterExperience()">
+        <div class="splash-title">Ænema</div>
+        <div class="splash-sub">[ click to enter ]</div>
+    </div>
+
+    <div class="player-container">
+        <div class="watermark">TOOL // AENEMA</div>
+
+        <div class="video-wrapper">
+            <video id="main-video" src="https://cdn.technoz3n.vexr.dev/media/aenema.webm" playsinline></video>
+        </div>
+
+        <div class="controls-overlay">
+            <div class="progress-bar-container" id="progress-container" onclick="seekVideo(event)">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <div class="control-row">
+                <div class="left-controls">
+                    <button class="btn-ctrl" id="play-btn" onclick="togglePlay()">PLAY</button>
+                    <button class="btn-ctrl" onclick="toggleMute()" id="mute-btn">MUTE</button>
+                    <span class="time-display" id="time-display">0:00 / 0:00</span>
+                </div>
+                <a href="/" class="btn-ctrl" style="text-decoration: none;">/exit</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const video = document.getElementById('main-video');
+
+        function enterExperience() {
+            document.getElementById('splash').classList.add('hidden');
+            video.play();
+            document.getElementById('play-btn').textContent = 'PAUSE';
+            startProgressLoop();
+        }
+
+        function togglePlay() {
+            if (video.paused) {
+                video.play();
+                document.getElementById('play-btn').textContent = 'PAUSE';
+            } else {
+                video.pause();
+                document.getElementById('play-btn').textContent = 'PLAY';
+            }
+        }
+
+        function toggleMute() {
+            video.muted = !video.muted;
+            document.getElementById('mute-btn').textContent = video.muted ? 'UNMUTE' : 'MUTE';
+        }
+
+        function seekVideo(e) {
+            const container = document.getElementById('progress-container');
+            const rect = container.getBoundingClientRect();
+            const percentage = (e.clientX - rect.left) / rect.width;
+            video.currentTime = video.duration * percentage;
+        }
+
+        function startProgressLoop() {
+            setInterval(() => {
+                if (video.duration) {
+                    const pct = (video.currentTime / video.duration) * 100;
+                    document.getElementById('progress-bar').style.width = pct + '%';
+                    document.getElementById('time-display').textContent = `${formatTime(video.currentTime)} / ${formatTime(video.duration)}`;
+                }
+            }, 250);
+        }
+    </script>
+</body>
+
+</html>
