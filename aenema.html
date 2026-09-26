@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>:3</title>
+    <title>Ænema</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Rubik Font & Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
     <style>
         :root {
             --bg-main: #050507;
@@ -16,7 +17,7 @@
             --border: #2a2228;
             --text-main: #d4ceb8;
             --text-dim: #8a8578;
-            --font-mono: 'JetBrains Mono', monospace;
+            --font-rubik: 'Rubik', sans-serif;
         }
 
         * {
@@ -25,36 +26,43 @@
             padding: 0;
         }
 
-        html,
-        body {
-            width: 100vw;
-            height: 100vh;
+        html, body {
+            width: 100%;
+            height: 100%;
             background-color: var(--bg-main);
             color: var(--text-main);
-            font-family: var(--font-mono);
+            font-family: var(--font-rubik);
             overflow: hidden;
             user-select: none;
         }
 
+        /* Fullscreen Viewport Container */
         .player-container {
-            position: relative;
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100vw;
             height: 100vh;
             background: #000;
+            z-index: 1;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        video {
+        #main-video {
             width: 100%;
             height: 100%;
+            max-width: 100%;
+            max-height: 100%;
             object-fit: contain;
             display: block;
+            background: #000;
         }
 
+        /* Click to enter splash */
         #splash {
-            position: absolute;
+            position: fixed;
             inset: 0;
             background: var(--bg-main);
             display: flex;
@@ -63,7 +71,7 @@
             justify-content: center;
             cursor: pointer;
             z-index: 100;
-            transition: opacity 0.4s ease, visibility 0.4s;
+            transition: opacity 0.3s ease, visibility 0.3s;
         }
 
         #splash.hidden {
@@ -73,21 +81,26 @@
         }
 
         .splash-title {
-            font-size: 28px;
+            font-size: 32px;
             font-weight: 700;
-            letter-spacing: 4px;
+            letter-spacing: 2px;
             color: var(--text-main);
             margin-bottom: 16px;
             text-transform: uppercase;
         }
 
         .splash-sub {
-            font-size: 11px;
+            font-size: 13px;
+            font-weight: 500;
             color: var(--text-dim);
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             border: 1px solid var(--border);
-            padding: 8px 16px;
+            padding: 8px 18px;
             background: #0d0d11;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-radius: 4px;
         }
 
         .splash-sub:hover {
@@ -95,6 +108,13 @@
             border-color: var(--accent);
         }
 
+        /* Material Symbols Styling */
+        .material-symbols-rounded {
+            font-size: 18px;
+            vertical-align: middle;
+        }
+
+        /* Controls */
         .controls-overlay {
             position: absolute;
             bottom: 0;
@@ -120,6 +140,8 @@
             background: var(--border);
             cursor: pointer;
             position: relative;
+            border-radius: 3px;
+            overflow: hidden;
         }
 
         .progress-bar {
@@ -132,24 +154,29 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            font-size: 12px;
+            font-size: 13px;
         }
 
         .left-controls {
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 12px;
         }
 
         .btn-ctrl {
             background: #0d0d11;
             border: 1px solid var(--border);
             color: var(--text-main);
-            font-family: var(--font-mono);
-            font-size: 11px;
+            font-family: var(--font-rubik);
+            font-size: 12px;
+            font-weight: 500;
             padding: 6px 12px;
             cursor: pointer;
             text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border-radius: 4px;
         }
 
         .btn-ctrl:hover {
@@ -160,13 +187,17 @@
 
         .time-display {
             color: var(--text-dim);
+            font-size: 12px;
+            font-weight: 400;
+            margin-left: 6px;
         }
 
         .watermark {
             position: absolute;
             top: 20px;
             left: 24px;
-            font-size: 11px;
+            font-size: 12px;
+            font-weight: 600;
             color: var(--text-dim);
             letter-spacing: 1px;
             pointer-events: none;
@@ -175,15 +206,19 @@
         }
     </style>
 </head>
-
 <body>
-    <div id="splash" onclick="enterExperience()">
-        <div></div>
-    </div>
-    <div class="player-container">
-        <div class="watermark">TOOL // AENEMA</div>
 
-        <video id="main-video" src="https://cdn.technoz3n.vexr.dev/media/aenema.webm" playsinline></video>
+    <div id="splash" onclick="enterExperience()">
+        <div class="splash-title"></div>
+        <div class="splash-sub">
+            <span class="material-symbols-rounded">play_arrow</span>
+        </div>
+    </div>
+
+    <div class="player-container">
+        <video id="main-video" crossorigin="anonymous" playsinline preload="auto">
+            <source src="https://cdn.technoz3n.vexr.dev/media/aenema.webm" type="video/webm">
+        </video>
 
         <div class="controls-overlay">
             <div class="progress-bar-container" id="progress-container" onclick="seekVideo(event)">
@@ -191,11 +226,20 @@
             </div>
             <div class="control-row">
                 <div class="left-controls">
-                    <button class="btn-ctrl" id="play-btn" onclick="togglePlay()">PAUSE</button>
-                    <button class="btn-ctrl" id="mute-btn" onclick="toggleMute()">MUTE</button>
+                    <button class="btn-ctrl" id="play-btn" onclick="togglePlay()">
+                        <span class="material-symbols-rounded" id="play-icon">pause</span>
+                        <span id="play-text">pause</span>
+                    </button>
+                    <button class="btn-ctrl" id="mute-btn" onclick="toggleMute()">
+                        <span class="material-symbols-rounded" id="mute-icon">volume_up</span>
+                        <span id="mute-text">mute</span>
+                    </button>
                     <span class="time-display" id="time-display">0:00 / 0:00</span>
                 </div>
-                <a href="/" class="btn-ctrl">/exit</a>
+                <a href="/" class="btn-ctrl">
+                    <span class="material-symbols-rounded">logout</span>
+                    <span>exit</span>
+                </a>
             </div>
         </div>
     </div>
@@ -203,38 +247,46 @@
     <script>
         const video = document.getElementById('main-video');
 
-        function enterExperience() {
+        async function enterExperience() {
             document.getElementById('splash').classList.add('hidden');
-
-            video.load();
-
-            const playPromise = video.play();
-            if (playPromise !== undefined) {
-                playPromise.then(() => {
-                    document.getElementById('play-btn').textContent = 'pause';
-                    startProgressLoop();
-                }).catch(err => {
-                    console.error('video play failed:', err);
-                    video.muted = true;
-                    document.getElementById('mute-btn').textContent = 'unmute';
-                    video.play();
-                });
+            
+            try {
+                await video.play();
+                updatePlayState(true);
+            } catch (err) {
+                console.log('unmuted play blocked, falling back to muted play:', err);
+                video.muted = true;
+                updateMuteState(true);
+                await video.play();
+                updatePlayState(true);
             }
+            
+            startProgressLoop();
         }
 
         function togglePlay() {
             if (video.paused) {
                 video.play();
-                document.getElementById('play-btn').textContent = 'pause';
+                updatePlayState(true);
             } else {
                 video.pause();
-                document.getElementById('play-btn').textContent = 'play';
+                updatePlayState(false);
             }
+        }
+
+        function updatePlayState(isPlaying) {
+            document.getElementById('play-icon').textContent = isPlaying ? 'pause' : 'play_arrow';
+            document.getElementById('play-text').textContent = isPlaying ? 'pause' : 'play';
         }
 
         function toggleMute() {
             video.muted = !video.muted;
-            document.getElementById('mute-btn').textContent = video.muted ? 'unmute' : 'mute';
+            updateMuteState(video.muted);
+        }
+
+        function updateMuteState(isMuted) {
+            document.getElementById('mute-icon').textContent = isMuted ? 'volume_off' : 'volume_up';
+            document.getElementById('mute-text').textContent = isMuted ? 'unmute' : 'mute';
         }
 
         function seekVideo(e) {
@@ -270,5 +322,4 @@
         });
     </script>
 </body>
-
 </html>
