@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,14 +12,13 @@
         :root {
             --bg-main: #0a0a0c;
             --surface: #121216;
-            --surface-alt: #181820;
             --border: #2a2228;
-            --border-hover: #1c838a;
             --accent: #00a6d8;
             --accent-dim: #103a34;
             --text-main: #d4ceb8;
             --text-dim: #8a8578;
             --green: #00ff66;
+            --red: #ff3344;
             --font-mono: 'JetBrains Mono', monospace;
         }
 
@@ -31,57 +31,46 @@
         body {
             background-color: var(--bg-main);
             background-image: linear-gradient(rgba(18, 18, 22, 0.85), rgba(10, 10, 12, 0.95)),
-                              url('img/aenima.png');
+                url('img/aenima.png');
             color: var(--text-main);
             font-family: var(--font-mono);
             font-size: 13px;
             line-height: 1.6;
             padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        a {
-            color: var(--accent);
-            text-decoration: none;
-            transition: color 0.15s;
-        }
-
-        a:hover {
-            color: var(--text-main);
-            background: var(--accent-dim);
-        }
-
-        .layout-grid {
-            max-width: 900px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 240px 1fr;
-            gap: 20px;
+        .container {
+            width: 100%;
+            max-width: 550px;
         }
 
         header {
-            max-width: 900px;
-            margin: 0 auto 20px auto;
             border: 1px solid var(--border);
             background: var(--surface);
             padding: 16px;
+            margin-bottom: 12px;
         }
 
         .header-main {
             display: flex;
             align-items: center;
-            gap: 16px;
-            margin-bottom: 12px;
+            justify-content: space-between;
+            margin-bottom: 8px;
         }
 
         .site-title {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 700;
-            color: var(--text-main);
+            color: var(--accent);
             letter-spacing: -0.5px;
         }
 
         .sub-title {
-            color: var(--accent);
+            color: var(--text-dim);
             font-size: 11px;
         }
 
@@ -94,21 +83,11 @@
             font-size: 12px;
         }
 
-        .ticker-label {
-            color: var(--accent);
-            font-weight: bold;
-            white-space: nowrap;
-        }
-
-        marquee {
-            color: var(--green);
-        }
-
         .box {
             border: 1px solid var(--border);
             background: var(--surface);
-            padding: 14px;
-            margin-bottom: 20px;
+            padding: 16px;
+            margin-bottom: 12px;
         }
 
         .box-hdr {
@@ -118,122 +97,38 @@
             color: var(--accent);
             font-size: 11px;
             font-weight: bold;
-            letter-spacing: 0.5px;
         }
 
-        .nav-list {
-            list-style: none;
+        .shitpost-text {
+            color: var(--text-main);
+            margin-bottom: 16px;
+        }
+
+        .action-row {
             display: flex;
-            flex-direction: column;
-            gap: 4px;
+            gap: 8px;
+            flex-wrap: wrap;
         }
 
-        .nav-btn {
-            display: block;
+        .btn {
+            display: inline-block;
             padding: 6px 10px;
-            background: var(--surface-alt);
+            background: #181820;
             border: 1px solid var(--border);
             color: var(--text-main);
+            font-family: var(--font-mono);
+            font-size: 12px;
             cursor: pointer;
+            text-decoration: none;
         }
 
-        .nav-btn:hover, .nav-btn.active {
+        .btn:hover {
             border-color: var(--accent);
             background: var(--accent-dim);
             color: #fff;
         }
 
-        .repo-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .repo-card {
-            border: 1px solid var(--border);
-            background: var(--surface-alt);
-            padding: 10px;
-        }
-
-        .repo-card:hover {
-            border-color: var(--accent);
-        }
-
-        .repo-hdr {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 4px;
-        }
-
-        .repo-title {
-            font-weight: bold;
-            color: var(--text-main);
-        }
-
-        .repo-badge {
-            font-size: 10px;
-            padding: 1px 5px;
-            border: 1px solid var(--border);
-        }
-
-        .repo-badge.public { color: var(--green); border-color: var(--green); }
-        .repo-badge.private { color: var(--accent); border-color: var(--accent); }
-
-        .repo-desc {
-            color: var(--text-dim);
-            font-size: 12px;
-            margin-bottom: 8px;
-        }
-
-        .filter-row {
-            display: flex;
-            gap: 6px;
-            margin-bottom: 12px;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            background: var(--surface-alt);
-            border: 1px solid var(--border);
-            color: var(--text-dim);
-            padding: 2px 8px;
-            font-size: 11px;
-            font-family: var(--font-mono);
-            cursor: pointer;
-        }
-
-        .filter-btn:hover, .filter-btn.active {
-            border-color: var(--accent);
-            color: var(--text-main);
-        }
-
-        .log-entry {
-            border-left: 2px solid var(--accent);
-            padding-left: 10px;
-            margin-bottom: 16px;
-        }
-
-        .log-date {
-            color: var(--green);
-            font-size: 11px;
-        }
-
-        .badge-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 4px;
-        }
-
-        .badge-grid img {
-            width: 88px;
-            height: 31px;
-            border: 1px solid var(--border);
-        }
-
         footer {
-            max-width: 900px;
-            margin: 20px auto 0 auto;
             border-top: 1px solid var(--border);
             padding-top: 10px;
             display: flex;
@@ -241,241 +136,82 @@
             color: var(--text-dim);
             font-size: 11px;
         }
-
-        @media (max-width: 680px) {
-            .layout-grid {
-                grid-template-columns: 1fr;
-            }
-        }
     </style>
 </head>
+
 <body>
+    <div class="container">
+        <header>
+            <div class="header-main">
+                <div>
+                    <div class="site-title">where are you going ???</div>
+                    <div class="sub-title">you went digging and found nothing</div>
+                </div>
+                <div style="font-size: 20px;">💔</div>
+            </div>
+            <div class="ticker-bar">
+                <span style="color: var(--accent); font-weight: bold;">psa:</span>
+                <marquee behavior="scroll" direction="left" style="color: var(--green);">
+                    some say the end is near,
+                    some say we'll see armageddon soon,
+                    i certainly hope we will,
+                    i sure could use a vacation from this,
+                    bullshit three-ring,
+                    circus sideshow of,
+                    freaks,
+                    here in this hopeless fucking hole we call l.a.,
+                    the only way to fix it is to flush it all away,
+                    any fucking time, any fucking day,
+                    learn to swim, i'll see you down in arizona bay,
+                </marquee>
+            </div>
+        </header>
 
-    <header>
-        <div class="header-main">
-            <div>
-                <div class="site-title">technoz3n // worldmachine</div>
-                <div class="sub-title">tools, linux, hyper-fixations & random projects</div>
+        <div class="box">
+            <div class="box-hdr">cant browse headless dumbass</div>
+            <p class="shitpost-text">
+                whatever link you clicked is dead or never existed in the first place bro<br>
+                tried fetching <span id="bad-url" style="color: var(--accent);">path</span> but the web server just
+                rejected you (i would too dw)<br><br>
+                your options right now:
+            </p>
+            <div class="action-row">
+                <button class="btn" onclick="history.back()">&lt;-- be submissive (liek me) and go back</button>
+                <a href="/" class="btn">or go fucking home</a>
             </div>
         </div>
-        <div class="ticker-bar">
-            <span class="ticker-label">spotify:</span>
-            <marquee behavior="scroll" direction="left" scrollamount="4" id="spotify-ticker">
-                fetching telemetry...
-            </marquee>
-        </div>
-    </header>
-    <div class="layout-grid">
-        <aside>
-            <div class="box">
-                <div class="box-hdr">nav</div>
-                <ul class="nav-list">
-                    <li><button class="nav-btn active" onclick="switchTab('about')" id="btn-about">/about</button></li>
-                    <li><button class="nav-btn" onclick="switchTab('shrine')" id="btn-shrine">/projects</button></li>
-                    <li><button class="nav-btn" onclick="switchTab('log')" id="btn-log">/devlog</button></li>
-                    <li><button class="nav-btn" onclick="switchTab('nodes')" id="btn-nodes">/socials</button></li>
-                </ul>
-            </div>
 
-            <div class="box">
-                <div class="box-hdr">stats</div>
-                <div style="color: var(--text-dim); font-size: 12px;">
-                    time: <span id="taskbar-clock" style="color: var(--text-main);">--:--:--</span><br>
-                    days of coding: <span id="days-since-2019" style="color: var(--text-main);">...</span> days<br>
-                    days since weeknd fan: <span id="days-since-xo" style="color: var(--text-main);">...</span> days<br>
-                </div>
-            </div>
-
-            <div class="box">
-                <div class="box-hdr">badges</div>
-                <div class="badge-grid">
-                    <img src="https://cyber.dabamos.de/88x31/netscape2.gif" alt="netscape">
-                    <img src="https://cyber.dabamos.de/88x31/linux_powered.gif" alt="linux">
-                    <img src="https://cyber.dabamos.de/88x31/notepad.gif" alt="notepad">
-                </div>
-            </div>
-        </aside>
-
-        <main>
-            <div id="view-about" class="box">
-                <div class="box-hdr">about me</div>
-                <p>haiii im techy. high school freshman tinkering with code, desktop linux, and niche tools since 2019 (<span class="days-2019-val">...</span> days ago).</p>
-                <br>
-                <p>started in scratch, moved through web apps, minecraft bedrock scripting, and settled on fedora kde as my main driver. mostly i just fork/remix open-source projects or build hyper-specific utilities i need.</p>
-                
-                <br>
-                <div class="box-hdr">games i like/have played</div>
-                <p><strong>ultrakill</strong></p>
-                <p>anything in the source, goldsource, half life, or portal universe</p>
-                <p>minecraft</p>
-                <p>oneshot</p>
-                <p>kinitopet</p>
-                <p>postal 2</p>
-                <p>buckshot roulette</p>
-                <p>doki doki literature club</p>
-                <p>geometry dash (i suck ass)</p>
-                <p>class of 09</p>
-                <br>
-                <div class="box-hdr">musiiiic</div>
-                <p>most absurd rotation you have heard: <strong>tool</strong> (undertow, ænima, lateralus), <strong>heaven pierce her</strong>, <strong>the weeknd</strong> (house of balloons / older era), <strong>master boot record / keygen church</strong>, <strong>aphex twin</strong>, <strong>deftones</strong>, <strong>pitchshifter</strong>, <strong>limp bizkit, kelly bailey, sean terry, kevin sherwood</strong></p>
-            </div>
-
-            <div id="view-shrine" class="box" style="display:none;">
-                <div class="box-hdr">projects</div>
-                <p>stuff i (or others) have made and messed with</p>
-                <br>
-                <div class="filter-row">
-                    <button class="filter-btn active" onclick="filterRepos('all', this)">all</button>
-                    <button class="filter-btn" onclick="filterRepos('javascript', this)">js</button>
-                    <button class="filter-btn" onclick="filterRepos('cpp', this)">c++/qt</button>
-                    <button class="filter-btn" onclick="filterRepos('python', this)">python</button>
-                    <button class="filter-btn" onclick="filterRepos('css', this)">css</button>
-                </div>
-
-                <div class="repo-list">
-                    <div class="repo-card" data-lang="javascript">
-                        <div class="repo-hdr">
-                            <span class="repo-title">ultragreed</span>
-                            <span class="repo-badge public">public</span>
-                        </div>
-                        <div class="repo-desc">discord quest tracking bot with webhook alerts.</div>
-                        <a href="https://github.com/technoz3n/ultragreed" target="_blank">repo ↗</a>
-                    </div>
-
-                    <div class="repo-card" data-lang="cpp">
-                        <div class="repo-hdr">
-                            <span class="repo-title">win7suite</span>
-                            <span class="repo-badge private">wip</span>
-                        </div>
-                        <div class="repo-desc">porting classic windows 7 desktop apps to modern linux using c++ and qt.</div>
-                        <a href="https://github.com/technoz3n/win7suite" target="_blank">repo ↗</a>
-                    </div>
-
-                    <div class="repo-card" data-lang="css">
-                        <div class="repo-hdr">
-                            <span class="repo-title">rosepine-discord-fixed</span>
-                            <span class="repo-badge public">public</span>
-                        </div>
-                        <div class="repo-desc">fixes sidebar and search contrast issues for the rosé pine discord theme.</div>
-                        <a href="https://github.com/technoz3n/rosepine-discord-fixed" target="_blank">repo ↗</a>
-                    </div>
-
-                    <div class="repo-card" data-lang="python">
-                        <div class="repo-hdr">
-                            <span class="repo-title">wine-app-builder</span>
-                            <span class="repo-badge public">public</span>
-                        </div>
-                        <div class="repo-desc">generates native linux menu entries for Windows .exe files easily.</div>
-                        <a href="https://github.com/technoz3n/wine-app-builder" target="_blank">repo ↗</a>
-                    </div>
-                </div>
-            </div>
-
-            <div id="view-log" class="box" style="display:none;">
-                <div class="box-hdr">devlog</div>
-                
-                <div class="log-entry">
-                    <div class="log-date">[2026-09-19]</div>
-                    <strong>bye bye old website design</strong>
-                    <p style="color: var(--text-dim); font-size: 12px;">self explanatory i guarantee this one wont last very long as well</p>
-                </div>
-            </div>
-
-            <div id="view-nodes" class="box" style="display:none;">
-                <div class="box-hdr">socials & links</div>
-                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
-                    <a href="https://github.com/technoz3n" target="_blank" class="nav-btn">github ↗</a>
-                    <a href="https://steamcommunity.com/id/technoz3n" target="_blank" class="nav-btn">steam ↗</a>
-                    <a href="https://discord.com/users/1152050115964567563" target="_blank" class="nav-btn">discord ↗</a>
-                    <a href="https://youtube.com/@technoz3n" target="_blank" class="nav-btn">youtube ↗</a>
-                    <a href="https://tiktok.com/@technoz3n" target="_blank" class="nav-btn">tiktok ↗</a>
-                    <a href="https://xf1re.com/profile/technozen" target="_blank" class="nav-btn">xf1re ↗</a>
-                </div>
-            </div>
-        </main>
+        <footer>
+            <span>(c) technoz3n</span>
+            <span>coding for <span class="days-2019-val">...</span> days and still missing pages</span>
+        </footer>
     </div>
 
-    <footer>
-        <span>(c) technoz3n</span>
-        <span>uptime: <span class="days-2019-val">...</span> days</span>
-    </footer>
     <script src="./oneko.js"></script>
-    <script>   
+    <script>
+        document.getElementById('bad-url').textContent = window.location.pathname;
+
         function daysSince(year, month, day) {
             const then = new Date(year, month, day);
             const now = new Date();
             return Math.floor((now - then) / (1000 * 60 * 60 * 24));
         }
 
-        function fillDayCounters() {
-            const since2019 = daysSince(2019, 0, 1);
-            const sinceXO = daysSince(2025, 9, 24);
-            document.querySelectorAll('#days-since-2019, .days-2019-val').forEach(el => el.textContent = since2019);
-            document.querySelectorAll('#days-since-xo').forEach(el => el.textContent = sinceXO);
-        }
-        fillDayCounters();
+        document.querySelectorAll('.days-2019-val').forEach(el => {
+            el.textContent = daysSince(2019, 0, 1);
+        });
 
-        async function fetchSpotifyLanyard() {
-            const discordId = '1152050115964567563';
-            const ticker = document.getElementById('spotify-ticker');
-            if (!ticker) return;
-            try {
-                const res = await fetch(`https://api.lanyard.rest/v1/users/${discordId}`);
-                const data = await res.json();
-                if (data.success && data.data.listening_to_spotify) {
-                    const s = data.data.spotify;
-                    ticker.textContent = `${s.song.toLowerCase()} — ${s.artist.toLowerCase()} [${s.album.toLowerCase()}]`;
-                } else {
-                    ticker.textContent = "nothing active right now";
-                }
-            } catch (err) {
-                ticker.textContent = "offline";
-            }
-        }
-        fetchSpotifyLanyard();
-        setInterval(fetchSpotifyLanyard, 10000);
-
-        function tickClock() {
-            const el = document.getElementById('taskbar-clock');
-            if (!el) return;
-            const now = new Date();
-            el.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-        }
-        tickClock();
-        setInterval(tickClock, 1000);
-
-        function switchTab(tabId) {
-            ['about', 'shrine', 'log', 'nodes'].forEach(t => {
-                const view = document.getElementById(`view-${t}`);
-                const btn = document.getElementById(`btn-${t}`);
-                if (view) view.style.display = (t === tabId) ? 'block' : 'none';
-                if (btn) {
-                    if (t === tabId) btn.classList.add('active');
-                    else btn.classList.remove('active');
-                }
-            });
-        }
-
-        function filterRepos(lang, btnEl) {
-            const rows = document.querySelectorAll('.repo-card');
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            if (btnEl) btnEl.classList.add('active');
-            rows.forEach(row => {
-                const match = lang === 'all' || row.dataset.lang === lang;
-                row.style.display = match ? 'block' : 'none';
-            });
-        }
-
-        const konamiCode = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+        const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
         let konamiIndex = 0;
         document.addEventListener('keydown', (e) => {
             if (e.key === konamiCode[konamiIndex]) konamiIndex++;
             else konamiIndex = (e.key === konamiCode[0]) ? 1 : 0;
             if (konamiIndex === konamiCode.length) {
                 konamiIndex = 0;
-                alert("secret unlocked");
+                window.location.href = '/secret.html';
             }
         });
     </script>
 </body>
+
 </html>
