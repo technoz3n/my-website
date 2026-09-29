@@ -10,400 +10,245 @@
     <style>
         :root {
             --bg-main: #0a0a0c;
-            --surface: #121216;
-            --surface-alt: #181820;
-            --border: #2a2228;
-            --border-hover: #1c838a;
-            --accent: #00a6d8;
-            --accent-dim: #103a34;
             --text-main: #d4ceb8;
-            --text-dim: #8a8578;
+            --text-dim: #6b6658;
+            --accent: #00a6d8;
             --green: #00ff66;
             --font-mono: 'JetBrains Mono', monospace;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            cursor: url('img/darkness.cur'), auto;
+        }
+
+        a, button, .nav-link {
+            cursor: url('img/darkness.cur'), auto;
         }
 
         body {
             background-color: var(--bg-main);
-            background-image: linear-gradient(rgba(18, 18, 22, 0.85), rgba(10, 10, 12, 0.95)),
-                              url('img/aenima.png');
+            background-image: linear-gradient(rgba(10,10,12,0.92), rgba(10,10,12,0.97)), url('img/aenima.png');
+            background-attachment: fixed;
+            background-size: cover;
             color: var(--text-main);
             font-family: var(--font-mono);
             font-size: 13px;
-            line-height: 1.6;
-            padding: 20px;
+            line-height: 1.7;
+            padding: 40px 20px 20px;
         }
 
-        a {
-            color: var(--accent);
-            text-decoration: none;
-            transition: color 0.15s;
-        }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; color: var(--green); }
 
-        a:hover {
-            color: var(--text-main);
-            background: var(--accent-dim);
-        }
+        .wrap { max-width: 640px; margin: 0 auto; }
 
-        .layout-grid {
-            max-width: 900px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 240px 1fr;
-            gap: 20px;
-        }
-
-        header {
-            max-width: 900px;
-            margin: 0 auto 20px auto;
-            border: 1px solid var(--border);
-            background: var(--surface);
-            padding: 16px;
-        }
-
-        .header-main {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 12px;
+        .doodle {
+            font-size: 10px;
+            line-height: 1.1;
+            color: var(--text-dim);
+            white-space: pre;
+            float: right;
+            margin-left: 16px;
+            user-select: none;
         }
 
         .site-title {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 700;
             color: var(--text-main);
-            letter-spacing: -0.5px;
         }
 
         .sub-title {
             color: var(--accent);
             font-size: 11px;
+            margin-top: 2px;
         }
 
-        .ticker-bar {
-            background: #000;
-            border: 1px solid var(--border);
-            padding: 6px 10px;
-            display: flex;
-            gap: 10px;
-            font-size: 12px;
-        }
-
-        .ticker-label {
-            color: var(--accent);
-            font-weight: bold;
-            white-space: nowrap;
-        }
-
-        marquee {
-            color: var(--green);
-        }
-
-        .box {
-            border: 1px solid var(--border);
-            background: var(--surface);
-            padding: 14px;
-            margin-bottom: 20px;
-        }
-
-        .box-hdr {
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 6px;
-            margin-bottom: 12px;
-            color: var(--accent);
-            font-size: 11px;
-            font-weight: bold;
-            letter-spacing: 0.5px;
-        }
-
-        .nav-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .nav-btn {
-            display: block;
-            padding: 6px 10px;
-            background: var(--surface-alt);
-            border: 1px solid var(--border);
-            color: var(--text-main);
-            cursor: pointer;
-        }
-
-        .nav-btn:hover, .nav-btn.active {
-            border-color: var(--accent);
-            background: var(--accent-dim);
-            color: #fff;
-        }
-
-        .repo-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .repo-card {
-            border: 1px solid var(--border);
-            background: var(--surface-alt);
-            padding: 10px;
-        }
-
-        .repo-card:hover {
-            border-color: var(--accent);
-        }
-
-        .repo-hdr {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 4px;
-        }
-
-        .repo-title {
-            font-weight: bold;
-            color: var(--text-main);
-        }
-
-        .repo-badge {
-            font-size: 10px;
-            padding: 1px 5px;
-            border: 1px solid var(--border);
-        }
-
-        .repo-badge.public { color: var(--green); border-color: var(--green); }
-        .repo-badge.private { color: var(--accent); border-color: var(--accent); }
-
-        .repo-desc {
+        .status-line {
+            margin-top: 10px;
             color: var(--text-dim);
             font-size: 12px;
-            margin-bottom: 8px;
         }
+        .status-line span { color: var(--text-main); }
 
-        .filter-row {
-            display: flex;
-            gap: 6px;
-            margin-bottom: 12px;
-            flex-wrap: wrap;
+        nav {
+            margin: 22px 0;
+            padding: 10px 0;
+            border-top: 1px dashed #2a2822;
+            border-bottom: 1px dashed #2a2822;
         }
-
-        .filter-btn {
-            background: var(--surface-alt);
-            border: 1px solid var(--border);
-            color: var(--text-dim);
-            padding: 2px 8px;
-            font-size: 11px;
+        .nav-link {
+            background: none;
+            border: none;
             font-family: var(--font-mono);
-            cursor: pointer;
+            font-size: 13px;
+            color: var(--text-dim);
+            margin-right: 16px;
         }
+        .nav-link:hover, .nav-link.active { color: var(--green); }
+        .nav-link.active::before { content: "> "; }
 
-        .filter-btn:hover, .filter-btn.active {
-            border-color: var(--accent);
-            color: var(--text-main);
-        }
+        section { display: none; }
+        section.active { display: block; }
 
-        .log-entry {
-            border-left: 2px solid var(--accent);
-            padding-left: 10px;
-            margin-bottom: 16px;
+        h2 {
+            font-size: 12px;
+            color: var(--accent);
+            letter-spacing: 0.5px;
+            margin: 22px 0 8px;
         }
+        h2:first-child { margin-top: 0; }
 
-        .log-date {
-            color: var(--green);
-            font-size: 11px;
-        }
+        p { margin-bottom: 10px; max-width: 58ch; }
 
-        .badge-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 4px;
-        }
+        .taglist { color: var(--text-dim); }
+        .taglist strong { color: var(--text-main); font-weight: 700; }
 
-        .badge-grid img {
-            width: 88px;
-            height: 31px;
-            border: 1px solid var(--border);
+        .repo-filters { margin-bottom: 14px; }
+        .repo-filters button {
+            background: none; border: none; font-family: var(--font-mono);
+            color: var(--text-dim); font-size: 11px; margin-right: 10px; padding: 0;
         }
+        .repo-filters button:hover, .repo-filters button.active { color: var(--green); }
+
+        .repo {
+            padding: 10px 0;
+            border-bottom: 1px dashed #221f1a;
+        }
+        .repo:last-child { border-bottom: none; }
+        .repo-hdr { display: flex; align-items: baseline; gap: 8px; }
+        .repo-title { color: var(--text-main); font-weight: 700; }
+        .repo-tag { font-size: 10px; color: var(--text-dim); }
+        .repo-tag.public { color: var(--green); }
+        .repo-desc { color: var(--text-dim); font-size: 12px; margin: 3px 0 4px; }
+
+        .log-entry { margin-bottom: 18px; padding-left: 10px; border-left: 1px solid #221f1a; }
+        .log-date { color: var(--green); font-size: 11px; display: block; margin-bottom: 2px; }
+
+        .links-row { display: flex; flex-wrap: wrap; gap: 4px 16px; }
+
+        .badges-strip { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 6px; opacity: 0.85; }
+        .badges-strip img { width: 88px; height: 31px; }
 
         footer {
-            max-width: 900px;
-            margin: 20px auto 0 auto;
-            border-top: 1px solid var(--border);
+            margin-top: 24px;
             padding-top: 10px;
+            border-top: 1px dashed #2a2822;
             display: flex;
             justify-content: space-between;
             color: var(--text-dim);
             font-size: 11px;
-        }
-
-        @media (max-width: 680px) {
-            .layout-grid {
-                grid-template-columns: 1fr;
-            }
         }
     </style>
 </head>
 <body>
+    <div class="wrap">
+        <pre class="doodle">  /\_/\
+ ( o.o )
+  > ^ <  zzz</pre>
 
-    <header>
-        <div class="header-main">
-            <div>
-                <div class="site-title">technoz3n // worldmachine</div>
-                <div class="sub-title">tools, linux, hyper-fixations & random projects</div>
-            </div>
+        <div class="site-title">technoz3n // worldmachine</div>
+        <div class="sub-title">tools, linux, hyper-fixations &amp; random projects</div>
+        <div class="status-line">
+            it's <span id="taskbar-clock">--:--</span> here. <span id="days-since-2019">...</span> days of coding.
+            <span id="spotify-ticker">fetching data...</span>
         </div>
-        <div class="ticker-bar">
-            <span class="ticker-label">spotify:</span>
-            <marquee behavior="scroll" direction="left" scrollamount="4" id="spotify-ticker">
-                fetching telemetry...
-            </marquee>
+
+        <nav>
+            <button class="nav-link active" onclick="switchTab('about')" id="btn-about">about</button>
+            <button class="nav-link" onclick="switchTab('shrine')" id="btn-shrine">projects</button>
+            <button class="nav-link" onclick="switchTab('log')" id="btn-log">devlog</button>
+            <button class="nav-link" onclick="switchTab('nodes')" id="btn-nodes">socials</button>
+        </nav>
+
+        <section id="view-about" class="active">
+            <p>haiii im techy. high school freshman tinkering with code, desktop linux, and niche tools since 2019 (<span class="days-2019-val">...</span> days ago).</p>
+            <p>started in scratch, moved through web apps, minecraft bedrock scripting, and settled on fedora kde as my main driver. mostly i just fork/remix open-source projects or build hyper-specific utilities i need.</p>
+
+            <h2>games i like/have played</h2>
+            <p class="taglist"><strong>ultrakill</strong> · anything in the source, goldsource, half life, or portal universe · minecraft · oneshot · kinitopet · postal 2 · buckshot roulette · doki doki literature club · geometry dash (i suck ass) · class of 09</p>
+
+            <h2>musiiiic</h2>
+            <p class="taglist">most absurd rotation you have heard: <strong>tool</strong>, <strong>heaven pierce her</strong>, <strong>the weeknd</strong> (house of balloons / older era), <strong>master boot record / keygen church</strong>, <strong>aphex twin</strong>, <strong>deftones</strong>, <strong>pitchshifter</strong>, <strong>limp bizkit, kelly bailey, sean terry, kevin sherwood</strong>, if you want to see the entire discography though, head over to <button class="nav-link" onclick="switchTab('nodes')" id="btn-nodes"><u>my socials</u></button></p>
+        </section>
+
+        <section id="view-shrine">
+            <p>stuff i (or others) have made and messed with</p>
+            <div class="repo-filters">
+                <button class="active" onclick="filterRepos('all', this)">all</button>
+                <button onclick="filterRepos('javascript', this)">js</button>
+                <button onclick="filterRepos('python', this)">python</button>
+                <button onclick="filterRepos('css', this)">css</button>
+            </div>
+
+            <div class="repo" data-lang="javascript">
+                <div class="repo-hdr"><span class="repo-title">ultragreed</span><span class="repo-tag public">public</span></div>
+                <div class="repo-desc">discord quest tracking bot with webhook alerts.</div>
+                <a href="https://github.com/technoz3n/ultragreed" target="_blank">repo ↗</a>
+            </div>
+
+            <div class="repo" data-lang="css">
+                <div class="repo-hdr"><span class="repo-title">firefox-theme</span><span class="repo-tag public">public</span></div>
+                <div class="repo-desc">my firefox theme. nuff said.</div>
+                <a href="https://github.com/technoz3n/firefox-theme" target="_blank">repo ↗</a>
+            </div>
+
+            <div class="repo" data-lang="css">
+                <div class="repo-hdr"><span class="repo-title">rosepine-discord-fixed</span><span class="repo-tag public">public</span></div>
+                <div class="repo-desc">fixes sidebar and search contrast issues for the rosé pine discord theme.</div>
+                <a href="https://github.com/technoz3n/rosepine-discord-fixed" target="_blank">repo ↗</a>
+            </div>
+
+            <div class="repo" data-lang="python">
+                <div class="repo-hdr"><span class="repo-title">wine-app-builder</span><span class="repo-tag public">public</span></div>
+                <div class="repo-desc">generates native linux menu entries for Windows .exe files easily.</div>
+                <a href="https://github.com/technoz3n/wine-app-builder" target="_blank">repo ↗</a>
+            </div>
+        </section>
+
+        <section id="view-log">
+            <div class="log-entry">
+                <span class="log-date">[2026-09-28]</span>
+                <strong>bye bye old new website design</strong>
+                <p style="color: var(--text-dim); font-size: 12px;">told you, but i actually like this one now way more</p>
+            </div>
+            <div class="log-entry">
+                <span class="log-date">[2026-09-19]</span>
+                <strong>bye bye old website design</strong>
+                <p style="color: var(--text-dim); font-size: 12px;">self explanatory i guarantee this one wont last very long as well</p>
+            </div>
+        </section>
+
+        <section id="view-nodes">
+            <div class="links-row">
+                <a href="https://github.com/technoz3n" target="_blank">github ↗</a>
+                <a href="https://steamcommunity.com/id/technoz3n" target="_blank">steam ↗</a>
+                <a href="https://discord.com/users/1152050115964567563" target="_blank">discord ↗</a>
+                <a href="https://youtube.com/@technoz3n" target="_blank">youtube ↗</a>
+                <a href="https://tiktok.com/@technoz3n" target="_blank">tiktok ↗</a>
+                <a href="https://xf1re.com/profile/technozen" target="_blank">xf1re ↗</a>
+            </div>
+        </section>
+
+        <div class="badges-strip">
+            <img src="img/badges/free.gif" alt="free">
+            <img src="img/badges/firefox3.gif" alt="firefox">
+            <img src="img/badges/transrights.jpg" alt="trans rights!">
+            <img src="img/badges/cs.gif" alt="ass counter strike player">
+            <img src="img/badges/anythingbut.gif" alt="anything but chrome!">
+            <img src="img/badges/classicgaming.gif" alt="og gamer">
         </div>
-    </header>
-    <div class="layout-grid">
-        <aside>
-            <div class="box">
-                <div class="box-hdr">nav</div>
-                <ul class="nav-list">
-                    <li><button class="nav-btn active" onclick="switchTab('about')" id="btn-about">/about</button></li>
-                    <li><button class="nav-btn" onclick="switchTab('shrine')" id="btn-shrine">/projects</button></li>
-                    <li><button class="nav-btn" onclick="switchTab('log')" id="btn-log">/devlog</button></li>
-                    <li><button class="nav-btn" onclick="switchTab('nodes')" id="btn-nodes">/socials</button></li>
-                </ul>
-            </div>
 
-            <div class="box">
-                <div class="box-hdr">stats</div>
-                <div style="color: var(--text-dim); font-size: 12px;">
-                    time: <span id="taskbar-clock" style="color: var(--text-main);">--:--:--</span><br>
-                    days of coding: <span id="days-since-2019" style="color: var(--text-main);">...</span> days<br>
-                    days since weeknd fan: <span id="days-since-xo" style="color: var(--text-main);">...</span> days<br>
-                </div>
-            </div>
-
-            <div class="box">
-                <div class="box-hdr">badges</div>
-                <div class="badge-grid">
-                    <img src="img/badges/free.gif" alt="free">
-                    <img src="img/badges/firefox3.gif" alt="firefox">
-                    <img src="img/badges/transrights.jpg" alt="trans rights!">
-                    <img src="img/badges/cs.gif" alt="ass counter strike player">
-                    <img src="img/badges/anythingbut.gif" alt="anything but chrome!">
-                    <img src="img/badges/classicgaming.gif" alt="og gamer">
-                </div>
-            </div>
-        </aside>
-
-        <main>
-            <div id="view-about" class="box">
-                <div class="box-hdr">about me</div>
-                <p>haiii im techy. high school freshman tinkering with code, desktop linux, and niche tools since 2019 (<span class="days-2019-val">...</span> days ago).</p>
-                <br>
-                <p>started in scratch, moved through web apps, minecraft bedrock scripting, and settled on fedora kde as my main driver. mostly i just fork/remix open-source projects or build hyper-specific utilities i need.</p>
-                
-                <br>
-                <div class="box-hdr">games i like/have played</div>
-                <p><strong>ultrakill</strong></p>
-                <p>anything in the source, goldsource, half life, or portal universe</p>
-                <p>minecraft</p>
-                <p>oneshot</p>
-                <p>kinitopet</p>
-                <p>postal 2</p>
-                <p>buckshot roulette</p>
-                <p>doki doki literature club</p>
-                <p>geometry dash (i suck ass)</p>
-                <p>class of 09</p>
-                <br>
-                <div class="box-hdr">musiiiic</div>
-                <p>most absurd rotation you have heard: <strong>tool</strong> (undertow, ænima, lateralus), <strong>heaven pierce her</strong>, <strong>the weeknd</strong> (house of balloons / older era), <strong>master boot record / keygen church</strong>, <strong>aphex twin</strong>, <strong>deftones</strong>, <strong>pitchshifter</strong>, <strong>limp bizkit, kelly bailey, sean terry, kevin sherwood</strong></p>
-            </div>
-
-            <div id="view-shrine" class="box" style="display:none;">
-                <div class="box-hdr">projects</div>
-                <p>stuff i (or others) have made and messed with</p>
-                <br>
-                <div class="filter-row">
-                    <button class="filter-btn active" onclick="filterRepos('all', this)">all</button>
-                    <button class="filter-btn" onclick="filterRepos('javascript', this)">js</button>
-                    <button class="filter-btn" onclick="filterRepos('cpp', this)">c++/qt</button>
-                    <button class="filter-btn" onclick="filterRepos('python', this)">python</button>
-                    <button class="filter-btn" onclick="filterRepos('css', this)">css</button>
-                </div>
-
-                <div class="repo-list">
-                    <div class="repo-card" data-lang="javascript">
-                        <div class="repo-hdr">
-                            <span class="repo-title">ultragreed</span>
-                            <span class="repo-badge public">public</span>
-                        </div>
-                        <div class="repo-desc">discord quest tracking bot with webhook alerts.</div>
-                        <a href="https://github.com/technoz3n/ultragreed" target="_blank">repo ↗</a>
-                    </div>
-
-                    <div class="repo-card" data-lang="cpp">
-                        <div class="repo-hdr">
-                            <span class="repo-title">win7suite</span>
-                            <span class="repo-badge private">wip</span>
-                        </div>
-                        <div class="repo-desc">porting classic windows 7 desktop apps to modern linux using c++ and qt.</div>
-                        <a href="https://github.com/technoz3n/win7suite" target="_blank">repo ↗</a>
-                    </div>
-
-                    <div class="repo-card" data-lang="css">
-                        <div class="repo-hdr">
-                            <span class="repo-title">rosepine-discord-fixed</span>
-                            <span class="repo-badge public">public</span>
-                        </div>
-                        <div class="repo-desc">fixes sidebar and search contrast issues for the rosé pine discord theme.</div>
-                        <a href="https://github.com/technoz3n/rosepine-discord-fixed" target="_blank">repo ↗</a>
-                    </div>
-
-                    <div class="repo-card" data-lang="python">
-                        <div class="repo-hdr">
-                            <span class="repo-title">wine-app-builder</span>
-                            <span class="repo-badge public">public</span>
-                        </div>
-                        <div class="repo-desc">generates native linux menu entries for Windows .exe files easily.</div>
-                        <a href="https://github.com/technoz3n/wine-app-builder" target="_blank">repo ↗</a>
-                    </div>
-                </div>
-            </div>
-
-            <div id="view-log" class="box" style="display:none;">
-                <div class="box-hdr">devlog</div>
-                
-                <div class="log-entry">
-                    <div class="log-date">[2026-09-19]</div>
-                    <strong>bye bye old website design</strong>
-                    <p style="color: var(--text-dim); font-size: 12px;">self explanatory i guarantee this one wont last very long as well</p>
-                </div>
-            </div>
-
-            <div id="view-nodes" class="box" style="display:none;">
-                <div class="box-hdr">socials & links</div>
-                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
-                    <a href="https://github.com/technoz3n" target="_blank" class="nav-btn">github ↗</a>
-                    <a href="https://steamcommunity.com/id/technoz3n" target="_blank" class="nav-btn">steam ↗</a>
-                    <a href="https://discord.com/users/1152050115964567563" target="_blank" class="nav-btn">discord ↗</a>
-                    <a href="https://youtube.com/@technoz3n" target="_blank" class="nav-btn">youtube ↗</a>
-                    <a href="https://tiktok.com/@technoz3n" target="_blank" class="nav-btn">tiktok ↗</a>
-                    <a href="https://xf1re.com/profile/technozen" target="_blank" class="nav-btn">xf1re ↗</a>
-                </div>
-            </div>
-        </main>
+        <footer>
+            <span>technoz3n :3</span>
+            <span>uptime: <span class="days-2019-val">...</span> days</span>
+        </footer>
     </div>
 
-    <footer>
-        <span>(c) technoz3n</span>
-        <span>uptime: <span class="days-2019-val">...</span> days</span>
-    </footer>
     <script src="./oneko.js"></script>
-    <script>   
+    <script>
         function daysSince(year, month, day) {
             const then = new Date(year, month, day);
             const now = new Date();
@@ -412,9 +257,7 @@
 
         function fillDayCounters() {
             const since2019 = daysSince(2019, 0, 1);
-            const sinceXO = daysSince(2025, 9, 24);
             document.querySelectorAll('#days-since-2019, .days-2019-val').forEach(el => el.textContent = since2019);
-            document.querySelectorAll('#days-since-xo').forEach(el => el.textContent = sinceXO);
         }
         fillDayCounters();
 
@@ -427,12 +270,12 @@
                 const data = await res.json();
                 if (data.success && data.data.listening_to_spotify) {
                     const s = data.data.spotify;
-                    ticker.textContent = `${s.song.toLowerCase()} — ${s.artist.toLowerCase()} [${s.album.toLowerCase()}]`;
+                    ticker.textContent = `listening to ${s.song.toLowerCase()} — ${s.artist.toLowerCase()}`;
                 } else {
-                    ticker.textContent = "nothing active right now";
+                    ticker.textContent = "listening to nothing right now.";
                 }
             } catch (err) {
-                ticker.textContent = "offline";
+                ticker.textContent = "spotify status offline.";
             }
         }
         fetchSpotifyLanyard();
@@ -442,7 +285,7 @@
             const el = document.getElementById('taskbar-clock');
             if (!el) return;
             const now = new Date();
-            el.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            el.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         }
         tickClock();
         setInterval(tickClock, 1000);
@@ -451,17 +294,14 @@
             ['about', 'shrine', 'log', 'nodes'].forEach(t => {
                 const view = document.getElementById(`view-${t}`);
                 const btn = document.getElementById(`btn-${t}`);
-                if (view) view.style.display = (t === tabId) ? 'block' : 'none';
-                if (btn) {
-                    if (t === tabId) btn.classList.add('active');
-                    else btn.classList.remove('active');
-                }
+                if (view) view.classList.toggle('active', t === tabId);
+                if (btn) btn.classList.toggle('active', t === tabId);
             });
         }
 
         function filterRepos(lang, btnEl) {
-            const rows = document.querySelectorAll('.repo-card');
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            const rows = document.querySelectorAll('.repo');
+            document.querySelectorAll('.repo-filters button').forEach(b => b.classList.remove('active'));
             if (btnEl) btnEl.classList.add('active');
             rows.forEach(row => {
                 const match = lang === 'all' || row.dataset.lang === lang;
