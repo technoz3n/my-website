@@ -11,14 +11,10 @@
     <style>
         :root {
             --bg-main: #0a0a0c;
-            --surface: #121216;
-            --border: #2a2228;
-            --accent: #00a6d8;
-            --accent-dim: #103a34;
             --text-main: #d4ceb8;
-            --text-dim: #8a8578;
+            --text-dim: #6b6658;
+            --accent: #00a6d8;
             --green: #00ff66;
-            --red: #ff3344;
             --font-mono: 'JetBrains Mono', monospace;
         }
 
@@ -28,109 +24,133 @@
             padding: 0;
         }
 
+        :root {
+            cursor: url('img/darkness.cur'), auto;
+        }
+
+        a,
+        button,
+        .nav-link {
+            cursor: url('img/darkness.cur'), auto;
+        }
+
         body {
             background-color: var(--bg-main);
-            background-image: linear-gradient(rgba(18, 18, 22, 0.85), rgba(10, 10, 12, 0.95)),
-                url('img/aenima.png');
+            background-image: linear-gradient(rgba(10, 10, 12, 0.92), rgba(10, 10, 12, 0.97)), url('img/aenima.png');
+            background-attachment: fixed;
+            background-size: cover;
             color: var(--text-main);
             font-family: var(--font-mono);
             font-size: 13px;
-            line-height: 1.6;
-            padding: 20px;
+            line-height: 1.7;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 20px;
         }
 
-        .container {
+        .wrap {
+            max-width: 560px;
             width: 100%;
-            max-width: 550px;
         }
 
-        header {
-            border: 1px solid var(--border);
-            background: var(--surface);
-            padding: 16px;
-            margin-bottom: 12px;
+        .doodle {
+            font-size: 10px;
+            line-height: 1.1;
+            color: var(--text-dim);
+            white-space: pre;
+            float: right;
+            margin-left: 16px;
+            user-select: none;
         }
 
-        .header-main {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 8px;
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: var(--green);
         }
 
         .site-title {
             font-size: 20px;
             font-weight: 700;
-            color: var(--accent);
-            letter-spacing: -0.5px;
+            color: var(--text-main);
         }
 
         .sub-title {
-            color: var(--text-dim);
-            font-size: 11px;
-        }
-
-        .ticker-bar {
-            background: #000;
-            border: 1px solid var(--border);
-            padding: 6px 10px;
-            display: flex;
-            gap: 10px;
-            font-size: 12px;
-        }
-
-        .box {
-            border: 1px solid var(--border);
-            background: var(--surface);
-            padding: 16px;
-            margin-bottom: 12px;
-        }
-
-        .box-hdr {
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 6px;
-            margin-bottom: 12px;
             color: var(--accent);
             font-size: 11px;
+            margin-top: 2px;
+        }
+
+        .ticker {
+            margin-top: 10px;
+            color: var(--text-dim);
+            font-size: 11px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .ticker span {
+            color: var(--accent);
             font-weight: bold;
         }
 
-        .shitpost-text {
-            color: var(--text-main);
-            margin-bottom: 16px;
+        main {
+            margin: 22px 0;
+            padding: 18px 0;
+            border-top: 1px dashed #2a2822;
+            border-bottom: 1px dashed #2a2822;
+        }
+
+        h2 {
+            font-size: 12px;
+            color: var(--accent);
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 10px;
+            max-width: 58ch;
+        }
+
+        #bad-url {
+            color: var(--green);
         }
 
         .action-row {
             display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
+            gap: 18px;
+            margin-top: 14px;
         }
 
-        .btn {
-            display: inline-block;
-            padding: 6px 10px;
-            background: #181820;
-            border: 1px solid var(--border);
-            color: var(--text-main);
+        .action-row button,
+        .action-row a {
+            background: none;
+            border: none;
             font-family: var(--font-mono);
             font-size: 12px;
-            cursor: pointer;
-            text-decoration: none;
+            color: var(--text-dim);
+            padding: 0;
         }
 
-        .btn:hover {
-            border-color: var(--accent);
-            background: var(--accent-dim);
-            color: #fff;
+        .action-row button:hover,
+        .action-row a:hover {
+            color: var(--green);
+        }
+
+        .action-row button::before,
+        .action-row a::before {
+            content: "> ";
+            color: var(--accent);
         }
 
         footer {
-            border-top: 1px solid var(--border);
-            padding-top: 10px;
             display: flex;
             justify-content: space-between;
             color: var(--text-dim);
@@ -140,49 +160,30 @@
 </head>
 
 <body>
-    <div class="container">
-        <header>
-            <div class="header-main">
-                <div>
-                    <div class="site-title">where are you going ???</div>
-                    <div class="sub-title">you went digging and found nothing</div>
-                </div>
-                <div style="font-size: 20px;">💔</div>
-            </div>
-            <div class="ticker-bar">
-                <span style="color: var(--accent); font-weight: bold;">psa:</span>
-                <marquee behavior="scroll" direction="left" style="color: var(--green);">
-                    some say the end is near,
-                    some say we'll see armageddon soon,
-                    i certainly hope we will,
-                    i sure could use a vacation from this,
-                    bullshit three-ring,
-                    circus sideshow of,
-                    freaks,
-                    here in this hopeless fucking hole we call l.a.,
-                    the only way to fix it is to flush it all away,
-                    any fucking time, any fucking day,
-                    learn to swim, i'll see you down in arizona bay,
-                </marquee>
-            </div>
-        </header>
+    <div class="wrap">
+        <pre class="doodle">  /\_/\
+ ( x.x )
+  > ^ <  ???</pre>
 
-        <div class="box">
-            <div class="box-hdr">cant browse headless dumbass</div>
-            <p class="shitpost-text">
-                whatever link you clicked is dead or never existed in the first place bro<br>
-                tried fetching <span id="bad-url" style="color: var(--accent);">path</span> but the web server just
-                rejected you (i would too dw)<br><br>
-                your options right now:
-            </p>
-            <div class="action-row">
-                <button class="btn" onclick="history.back()">&lt;-- be submissive (liek me) and go back</button>
-                <a href="/" class="btn">or go fucking home</a>
-            </div>
+        <div class="site-title">where are you going ???</div>
+        <div class="sub-title">you went digging and found nothing</div>
+        <div class="ticker">
+            <span>psa:</span> <span id="psa-line">loading nonsense...</span>
         </div>
 
+        <main>
+            <h2>cant browse headless dumbass</h2>
+            <p>whatever link you clicked is dead or never existed in the first place bro. tried fetching <span
+                    id="bad-url">path</span> but the web server just rejected you (i would too dw).</p>
+            <p>your options right now:</p>
+            <div class="action-row">
+                <button onclick="history.back()">be submissive (liek me) and go back</button>
+                <a href="/">or go fucking home</a>
+            </div>
+        </main>
+
         <footer>
-            <span>(c) technoz3n</span>
+            <span>technoz3n :3</span>
             <span>coding for <span class="days-2019-val">...</span> days and still missing pages</span>
         </footer>
     </div>
@@ -190,6 +191,21 @@
     <script src="./oneko.js"></script>
     <script>
         document.getElementById('bad-url').textContent = window.location.pathname;
+
+        async function loadPsaLine() {
+            const el = document.getElementById('psa-line');
+            if (!el) return;
+            try {
+                const res = await fetch('./misc/psa.txt');
+                const text = await res.text();
+                const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
+                if (lines.length === 0) throw new Error('empty');
+                el.textContent = lines[Math.floor(Math.random() * lines.length)];
+            } catch (err) {
+                el.textContent = "couldn't even load the psa, thats how dead this page is pff";
+            }
+        }
+        loadPsaLine();
 
         function daysSince(year, month, day) {
             const then = new Date(year, month, day);
