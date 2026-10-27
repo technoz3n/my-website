@@ -149,10 +149,10 @@
  ( o.o )
   > ^ <  zzz</pre>
 
-        <div class="site-title">technoz3n // worldmachine</div>
-        <div class="sub-title">tools, linux, hyper-fixations &amp; random projects</div>
+        <div class="site-title">techy || technoz3n</div>
+        <div class="sub-title">tech, obsessions &amp; random projects</div>
         <div class="status-line">
-            it's <span id="taskbar-clock">--:--</span> here. <span id="days-since-2019">...</span> days of coding.
+            my time is <span id="taskbar-clock">--:--</span>, i have spent <span id="days-since-2019">...</span> days programming ^-^,
             <span id="spotify-ticker">fetching data...</span>
         </div>
 
@@ -160,15 +160,16 @@
             <button class="nav-link active" onclick="switchTab('about')" id="btn-about">about</button>
             <button class="nav-link" onclick="switchTab('shrine')" id="btn-shrine">projects</button>
             <button class="nav-link" onclick="switchTab('log')" id="btn-log">devlog</button>
+            <button class="nav-link" onclick="switchTab('musicstats')" id="btn-musicstats">music stats</button>
             <button class="nav-link" onclick="switchTab('nodes')" id="btn-nodes">socials</button>
         </nav>
 
         <section id="view-about" class="active">
-            <p>haiii im techy. high school freshman tinkering with code, desktop linux, and niche tools since 2019 (<span class="days-2019-val">...</span> days ago).</p>
-            <p>started in scratch, moved through web apps, minecraft bedrock scripting, and settled on fedora kde as my main driver. mostly i just fork/remix open-source projects or build hyper-specific utilities i need.</p>
+            <p>haiii im techy, a high school freshman tinkering with code, tech, and weird things since 2019 (that was <span class="days-2019-val">...</span> days ago!)</p>
+            <p>started with scratch, moved through web apps, minecraft bedrock scripting, and experiment now with javascript, java, and anything else, really! (fun fact, even though python is the easiest language some say, i still dont know it :c) i mostly just fork/remix open-source projects or build hyper-specific utilities i need.</p>
 
             <h2>games i like/have played</h2>
-            <p class="taglist"><strong>ultrakill</strong> · anything in the source, goldsource, half life, or portal universe · minecraft · oneshot · kinitopet · postal 2 · buckshot roulette · doki doki literature club · geometry dash (i suck ass) · class of 09</p>
+            <p class="taglist"><strong>ultrakill</strong> · anything in the source, goldsrc, half life, or portal universe · minecraft · oneshot · kinitopet · postal 2 · buckshot roulette · doki doki literature club · geometry dash (i suck ass) · class of 09 · 7 days to die</p>
 
             <h2>musiiiic</h2>
             <p class="taglist">most absurd rotation you have heard: <strong>tool</strong>, <strong>heaven pierce her</strong>, <strong>the weeknd</strong> (house of balloons / older era), <strong>master boot record / keygen church</strong>, <strong>aphex twin</strong>, <strong>deftones</strong>, <strong>pitchshifter</strong>, <strong>limp bizkit, kelly bailey, sean terry, kevin sherwood</strong>, if you want to see the entire discography though, head over to <button class="nav-link" onclick="switchTab('nodes')" id="btn-nodes"><u>my socials</u></button></p>
@@ -183,7 +184,21 @@
                 <button onclick="filterRepos('python', this)">python</button>
                 <button onclick="filterRepos('css', this)">css</button>
             </div>
-            
+            <div class="repo" data-lang="java">
+                <div class="repo-hdr"><span class="repo-title">arsenal</span><span class="repo-tag public">public</span></div>
+                <div class="repo-desc">minecraft mod focused on uh idk</div>
+                <a href="https://github.com/technoz3n/arsenal" target="_blank">repo ↗</a>
+            </div>
+            <div class="repo" data-lang="javascript">
+                <div class="repo-hdr"><span class="repo-title">techys-arras</span><span class="repo-tag public">public</span></div>
+                <div class="repo-desc">arras io mod :3c</div>
+                <a href="https://github.com/technoz3n/techys-arras" target="_blank">repo ↗</a>
+            </div>
+            <div class="repo" data-lang="java">
+                <div class="repo-hdr"><span class="repo-title">UnfuckedLAN</span><span class="repo-tag public">public</span></div>
+                <div class="repo-desc">forces offline mode on integrated servers because wrapper mods are garbage</div>
+                <a href="https://github.com/technoz3n/UnfuckedLAN" target="_blank">repo ↗</a>
+            </div>
             <div class="repo" data-lang="java">
                 <div class="repo-hdr"><span class="repo-title">hack-n-slash</span><span class="repo-tag public">public</span></div>
                 <div class="repo-desc">minecraft mod focused on combat</div>
@@ -192,25 +207,25 @@
 
             <div class="repo" data-lang="javascript">
                 <div class="repo-hdr"><span class="repo-title">ultragreed</span><span class="repo-tag public">public</span></div>
-                <div class="repo-desc">discord quest tracking bot with webhook alerts.</div>
+                <div class="repo-desc">discord quest tracking bot with webhook alerts</div>
                 <a href="https://github.com/technoz3n/ultragreed" target="_blank">repo ↗</a>
             </div>
 
             <div class="repo" data-lang="css">
                 <div class="repo-hdr"><span class="repo-title">firefox-theme</span><span class="repo-tag public">public</span></div>
-                <div class="repo-desc">my firefox theme. nuff said.</div>
+                <div class="repo-desc">my firefox theme. nuff said</div>
                 <a href="https://github.com/technoz3n/firefox-theme" target="_blank">repo ↗</a>
             </div>
 
             <div class="repo" data-lang="css">
                 <div class="repo-hdr"><span class="repo-title">rosepine-discord-fixed</span><span class="repo-tag public">public</span></div>
-                <div class="repo-desc">fixes sidebar and search contrast issues for the rosé pine discord theme.</div>
+                <div class="repo-desc">fixes sidebar and search contrast issues for the rosé pine discord theme</div>
                 <a href="https://github.com/technoz3n/rosepine-discord-fixed" target="_blank">repo ↗</a>
             </div>
 
             <div class="repo" data-lang="python">
                 <div class="repo-hdr"><span class="repo-title">wine-app-builder</span><span class="repo-tag public">public</span></div>
-                <div class="repo-desc">generates native linux menu entries for Windows .exe files easily.</div>
+                <div class="repo-desc">generates native linux menu entries for Windows .exe files easily</div>
                 <a href="https://github.com/technoz3n/wine-app-builder" target="_blank">repo ↗</a>
             </div>
         </section>
@@ -225,6 +240,45 @@
                 <span class="log-date">[2026-09-19]</span>
                 <strong>bye bye old website design</strong>
                 <p style="color: var(--text-dim); font-size: 12px;">self explanatory i guarantee this one wont last very long as well</p>
+            </div>
+        </section>
+
+        <section id="view-musicstats">
+            <div class="log-entry">
+                <span class="log-date">[10/19 - 10/25]</span>
+                <strong>i listened to music for 1,439 minutes this week</strong>
+                <p style="font-size: 12px; padding-left: 10px">i spent 362 minutes listening to these three albums</p>
+                <p style="padding-left: 20px;">1. kiss land</p>
+                <p style="padding-left: 20px;">2. lateralus</p>
+                <p style="padding-left: 20px;">3. ultrakill: fraud</p>
+            </div>
+            <div class="log-entry">
+                <span class="log-date">[10/12 - 10/18]</span>
+                <strong>i listened to music for 800 minutes this week</strong>
+                <p style="font-size: 12px; padding-left: 10px">i spent 226 minutes listening to these three albums</p>
+                <p style="padding-left: 20px;">1. ultrakill: infinite hyperdeath</p>
+                <p style="padding-left: 20px;">2. lateralus</p>
+                <p style="padding-left: 20px;">3. undertow</p>
+                <p><strong>i spent 172 minutes more than the average fan with the weeknd</strong></p>
+            </div>
+            <div class="log-entry">
+                <span class="log-date">[10/5 - 10/11]</span>
+                <strong>i listened to music for 816 minutes this week</strong>
+                <p style="font-size: 12px; padding-left: 10px">- i was deep in the 2000s</p>
+                <p style="font-size: 12px; padding-left: 10px">- i spent 307 minutes with artists such as tool</p>
+                <p><strong>i spent three hours this week with tool</strong></p>
+            </div>
+            <div class="log-entry">
+                <span class="log-date">[09/28 - 10/04]</span>
+                <strong>i listened to music for 4,467 minutes this month</strong>
+                <p style="font-size: 12px; padding-left: 20px">i spent 101 minutes listening to ULTRAKILL: FRAUD</p>
+                <p style="font-size: 12px; padding-left: 20px">i replayed In Absentia ΛΟΓΟΣ 6 times</p>
+                <p><strong>my top artists were:</strong></p>
+                <p style="padding-left: 20px;">1. heaven pierce her</p>
+                <p style="padding-left: 20px;">2. tool</p>
+                <p style="padding-left: 20px;">3. deftones</p>
+                <p style="padding-left: 20px;">4. the weeknd</p>
+                <p style="padding-left: 20px;">5. pitchshifter</p>
             </div>
         </section>
 
@@ -277,12 +331,12 @@
                 const data = await res.json();
                 if (data.success && data.data.listening_to_spotify) {
                     const s = data.data.spotify;
-                    ticker.textContent = `listening to ${s.song.toLowerCase()} — ${s.artist.toLowerCase()}`;
+                    ticker.textContent = `im listening to ${s.song.toLowerCase()} by ${s.artist.toLowerCase()} from ${s.album.toLowerCase()}!`;
                 } else {
-                    ticker.textContent = "listening to nothing right now.";
+                    ticker.textContent = "im not listening to anything right now so that probably means im extra sad";
                 }
             } catch (err) {
-                ticker.textContent = "spotify status offline.";
+                ticker.textContent = "im not awake or online or whatever";
             }
         }
         fetchSpotifyLanyard();
@@ -298,7 +352,7 @@
         setInterval(tickClock, 1000);
 
         function switchTab(tabId) {
-            ['about', 'shrine', 'log', 'nodes'].forEach(t => {
+            ['about', 'shrine', 'log', 'nodes', 'musicstats'].forEach(t => {
                 const view = document.getElementById(`view-${t}`);
                 const btn = document.getElementById(`btn-${t}`);
                 if (view) view.classList.toggle('active', t === tabId);
