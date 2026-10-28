@@ -3,33 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>techy's site!!</title>
+    <title>techy's site</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-main: #0a0a0c;
-            --text-main: #d4ceb8;
-            --text-dim: #6b6658;
-            --accent: #00a6d8;
+            --bg-main: #060807;
+            --bg-card: rgba(10, 16, 12, 0.85);
+            --text-main: #d1f4d9;
+            --text-dim: #547d60;
+            --accent: #00ff66;
+            --accent-glow: rgba(0, 255, 102, 0.35);
             --green: #00ff66;
+            --green-dark: #008833;
+            --border-color: #153320;
             --font-mono: 'JetBrains Mono', monospace;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        :root {
-            cursor: url('img/darkness.cur'), auto;
-        }
-
-        a, button, .nav-link {
-            cursor: url('img/darkness.cur'), auto;
-        }
-
         body {
             background-color: var(--bg-main);
-            background-image: linear-gradient(rgba(10,10,12,0.92), rgba(10,10,12,0.97)), url('img/aenima.png');
+            background-image: linear-gradient(rgba(6, 8, 7, 0.90), rgba(6, 8, 7, 0.96)), url('img/kisslandcity.jpg');
             background-attachment: fixed;
             background-size: cover;
             color: var(--text-main);
@@ -37,33 +33,37 @@
             font-size: 13px;
             line-height: 1.7;
             padding: 40px 20px 20px;
+            text-shadow: 0 0 4px rgba(0, 255, 102, 0.15);
         }
 
-        a { color: var(--accent); text-decoration: none; }
-        a:hover { text-decoration: underline; color: var(--green); }
+        a { color: var(--accent); text-decoration: none; transition: all 0.2s ease; }
+        a:hover { text-decoration: underline; color: #fff; text-shadow: 0 0 8px var(--accent); }
 
         .wrap { max-width: 640px; margin: 0 auto; }
 
         .doodle {
             font-size: 10px;
             line-height: 1.1;
-            color: var(--text-dim);
+            color: var(--green);
             white-space: pre;
             float: right;
             margin-left: 16px;
             user-select: none;
+            filter: drop-shadow(0 0 5px var(--accent-glow));
         }
 
         .site-title {
             font-size: 20px;
             font-weight: 700;
             color: var(--text-main);
+            text-shadow: 0 0 10px var(--accent-glow);
         }
 
         .sub-title {
             color: var(--accent);
             font-size: 11px;
             margin-top: 2px;
+            letter-spacing: 0.5px;
         }
 
         .status-line {
@@ -76,8 +76,8 @@
         nav {
             margin: 22px 0;
             padding: 10px 0;
-            border-top: 1px dashed #2a2822;
-            border-bottom: 1px dashed #2a2822;
+            border-top: 1px dashed var(--border-color);
+            border-bottom: 1px dashed var(--border-color);
         }
         .nav-link {
             background: none;
@@ -86,9 +86,12 @@
             font-size: 13px;
             color: var(--text-dim);
             margin-right: 16px;
+            padding: 0;
+            cursor: pointer;
+            transition: color 0.2s;
         }
-        .nav-link:hover, .nav-link.active { color: var(--green); }
-        .nav-link.active::before { content: "> "; }
+        .nav-link:hover, .nav-link.active { color: var(--green); text-shadow: 0 0 6px var(--accent-glow); }
+        .nav-link.active::before { content: "> "; color: var(--green); }
 
         section { display: none; }
         section.active { display: block; }
@@ -98,6 +101,7 @@
             color: var(--accent);
             letter-spacing: 0.5px;
             margin: 22px 0 8px;
+            text-shadow: 0 0 6px var(--accent-glow);
         }
         h2:first-child { margin-top: 0; }
 
@@ -109,13 +113,13 @@
         .repo-filters { margin-bottom: 14px; }
         .repo-filters button {
             background: none; border: none; font-family: var(--font-mono);
-            color: var(--text-dim); font-size: 11px; margin-right: 10px; padding: 0;
+            color: var(--text-dim); font-size: 11px; margin-right: 10px; padding: 0; cursor: pointer;
         }
-        .repo-filters button:hover, .repo-filters button.active { color: var(--green); }
+        .repo-filters button:hover, .repo-filters button.active { color: var(--green); text-shadow: 0 0 5px var(--accent-glow); }
 
         .repo {
             padding: 10px 0;
-            border-bottom: 1px dashed #221f1a;
+            border-bottom: 1px dashed var(--border-color);
         }
         .repo:last-child { border-bottom: none; }
         .repo-hdr { display: flex; align-items: baseline; gap: 8px; }
@@ -124,33 +128,34 @@
         .repo-tag.public { color: var(--green); }
         .repo-desc { color: var(--text-dim); font-size: 12px; margin: 3px 0 4px; }
 
-        .log-entry { margin-bottom: 18px; padding-left: 10px; border-left: 1px solid #221f1a; }
+        .log-entry { margin-bottom: 18px; padding-left: 10px; border-left: 1px solid var(--border-color); }
         .log-date { color: var(--green); font-size: 11px; display: block; margin-bottom: 2px; }
 
         .links-row { display: flex; flex-wrap: wrap; gap: 4px 16px; }
 
-        .badges-strip { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 6px; opacity: 0.85; }
-        .badges-strip img { width: 88px; height: 31px; }
+        .badges-strip { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 6px; opacity: 0.85; filter: hue-rotate(45deg) saturate(1.3); }
+        .badges-strip img { width: 88px; height: 31px; border: 1px solid var(--border-color); }
 
         footer {
             margin-top: 24px;
             padding-top: 10px;
-            border-top: 1px dashed #2a2822;
+            border-top: 1px dashed var(--border-color);
             display: flex;
             justify-content: space-between;
             color: var(--text-dim);
             font-size: 11px;
         }
+
     </style>
 </head>
 <body>
     <div class="wrap">
-        <pre class="doodle">  /\_/\
- ( o.o )
-  > ^ <  zzz</pre>
+        <pre class="doodle">  /\_/\  [キッス]
+ ( o.o ) <33
+  > ^ <  [LAND]</pre>
 
         <div class="site-title">techy || technoz3n</div>
-        <div class="sub-title">tech, obsessions &amp; random projects</div>
+        <div class="sub-title">tech, obsessions &amp; stupidity :3</div>
         <div class="status-line">
             my time is <span id="taskbar-clock">--:--</span>, i have spent <span id="days-since-2019">...</span> days programming ^-^,
             <span id="spotify-ticker">fetching data...</span>
@@ -169,10 +174,10 @@
             <p>started with scratch, moved through web apps, minecraft bedrock scripting, and experiment now with javascript, java, and anything else, really! (fun fact, even though python is the easiest language some say, i still dont know it :c) i mostly just fork/remix open-source projects or build hyper-specific utilities i need.</p>
 
             <h2>games i like/have played</h2>
-            <p class="taglist"><strong>ultrakill</strong> · anything in the source, goldsrc, half life, or portal universe · minecraft · oneshot · kinitopet · postal 2 · buckshot roulette · doki doki literature club · geometry dash (i suck ass) · class of 09 · 7 days to die</p>
+            <p class="taglist"><strong>ultrakill</strong> · anything in the source, goldsrc, half life (blast pit green!), or portal universe · minecraft · oneshot · kinitopet · postal 2 · buckshot roulette · doki doki literature club · geometry dash (i suck ass) · class of 09 · 7 days to die</p>
 
             <h2>musiiiic</h2>
-            <p class="taglist">most absurd rotation you have heard: <strong>tool</strong>, <strong>heaven pierce her</strong>, <strong>the weeknd</strong> (house of balloons / older era), <strong>master boot record / keygen church</strong>, <strong>aphex twin</strong>, <strong>deftones</strong>, <strong>pitchshifter</strong>, <strong>limp bizkit, kelly bailey, sean terry, kevin sherwood</strong>, if you want to see the entire discography though, head over to <button class="nav-link" onclick="switchTab('nodes')" id="btn-nodes"><u>my socials</u></button></p>
+            <p class="taglist">most absurd rotation you have heard: <strong>tool</strong>, <strong>heaven pierce her</strong>, <strong>the weeknd (house of balloons / kiss land era)</strong>, <strong>master boot record / keygen church</strong>, <strong>aphex twin</strong>, <strong>deftones</strong>, <strong>pitchshifter</strong>, <strong>limp bizkit, kelly bailey, sean terry, kevin sherwood</strong>, if you want to see the entire discography though, head over to <button class="nav-link" onclick="switchTab('nodes')" style="display:inline; padding:0;"><u>my socials</u></button></p>
         </section>
 
         <section id="view-shrine">
@@ -233,9 +238,14 @@
         <section id="view-log">
             <div class="log-entry">
                 <span class="log-date">[2026-09-28]</span>
+                <strong>kisslandified the entire site</strong>
+                <p style="color: var(--text-dim); font-size: 12px;">the city of angels <3</p>
+            </div>
+            <div class="log-entry">
+                <span class="log-date">[2026-09-28]</span>
                 <strong>bye bye old new website design</strong>
                 <p style="color: var(--text-dim); font-size: 12px;">told you, but i actually like this one now way more</p>
-            </div>
+            </div> 
             <div class="log-entry">
                 <span class="log-date">[2026-09-19]</span>
                 <strong>bye bye old website design</strong>
@@ -264,8 +274,8 @@
             <div class="log-entry">
                 <span class="log-date">[10/5 - 10/11]</span>
                 <strong>i listened to music for 816 minutes this week</strong>
-                <p style="font-size: 12px; padding-left: 10px">- i was deep in the 2000s</p>
-                <p style="font-size: 12px; padding-left: 10px">- i spent 307 minutes with artists such as tool</p>
+                <p style="font-size: 12px; padding-left: 10px">i was deep in the 2000s</p>
+                <p style="font-size: 12px; padding-left: 10px">i spent 307 minutes with artists such as tool</p>
                 <p><strong>i spent three hours this week with tool</strong></p>
             </div>
             <div class="log-entry">
@@ -303,7 +313,7 @@
         </div>
 
         <footer>
-            <span>technoz3n :3</span>
+            <span>technoz3n :3 [キッスランド]</span>
             <span>uptime: <span class="days-2019-val">...</span> days</span>
         </footer>
     </div>
@@ -377,8 +387,8 @@
             else konamiIndex = (e.key === konamiCode[0]) ? 1 : 0;
             if (konamiIndex === konamiCode.length) {
                 konamiIndex = 0;
-                alert("secret unlocked");
-            }
+                console.log("/secret.html");
+           }
         });
     </script>
 </body>
