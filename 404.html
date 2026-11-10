@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,23 +10,27 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-main: #060807;
-            --bg-card: rgba(10, 16, 12, 0.85);
-            --text-main: #d1f4d9;
-            --text-dim: #547d60;
-            --accent: #00ff66;
-            --accent-glow: rgba(0, 255, 102, 0.35);
-            --green: #00ff66;
-            --green-dark: #008833;
-            --border-color: #153320;
+            --bg-main: #090710;
+            --bg-card: #100d19;
+            --text-main: #e2d9f2;
+            --text-dim: #817493;
+            --accent: #b78aff;
+            --accent-glow: rgba(195, 0, 255, 0.35);
+            --purple: #9900ff;
+            --purple-dark: #4b0088;
+            --border-color: #30213f;
             --font-mono: 'JetBrains Mono', monospace;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
         body {
             background-color: var(--bg-main);
-            background-image: linear-gradient(rgba(6, 8, 7, 0.90), rgba(6, 8, 7, 0.96)), url('img/kisslandcity.jpg');
+            background-image: linear-gradient(rgba(9, 7, 16, 0.88), rgba(9, 7, 16, 0.96)), url('img/purple.png');
             background-attachment: fixed;
             background-size: cover;
             color: var(--text-main);
@@ -33,18 +38,30 @@
             font-size: 13px;
             line-height: 1.7;
             padding: 40px 20px 20px;
-            text-shadow: 0 0 4px rgba(0, 255, 102, 0.15);
+            text-shadow: 0 0 4px rgba(195, 0, 255, 0.15);
         }
 
-        a { color: var(--accent); text-decoration: none; transition: all 0.2s ease; }
-        a:hover { text-decoration: underline; color: #fff; text-shadow: 0 0 8px var(--accent); }
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
 
-        .wrap { max-width: 640px; margin: 0 auto; }
+        a:hover {
+            text-decoration: underline;
+            color: #fff;
+            text-shadow: 0 0 8px var(--accent);
+        }
+
+        .wrap {
+            max-width: 640px;
+            margin: 0 auto;
+        }
 
         .doodle {
             font-size: 10px;
             line-height: 1.1;
-            color: var(--green);
+            color: var(--purple);
             white-space: pre;
             float: right;
             margin-left: 16px;
@@ -71,7 +88,10 @@
             color: var(--text-dim);
             font-size: 12px;
         }
-        .status-line span { color: var(--text-main); }
+
+        .status-line span {
+            color: var(--text-main);
+        }
 
         nav {
             margin: 22px 0;
@@ -79,6 +99,7 @@
             border-top: 1px dashed var(--border-color);
             border-bottom: 1px dashed var(--border-color);
         }
+
         .nav-link {
             background: none;
             border: none;
@@ -90,11 +111,31 @@
             cursor: pointer;
             transition: color 0.2s;
         }
-        .nav-link:hover, .nav-link.active { color: var(--green); text-shadow: 0 0 6px var(--accent-glow); }
-        .nav-link.active::before { content: "> "; color: var(--green); }
 
-        section { display: none; }
-        section.active { display: block; }
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--purple);
+            text-shadow: 0 0 6px var(--accent-glow);
+        }
+
+        .nav-link.active::before {
+            content: "> ";
+            color: var(--purple);
+        }
+
+        .links-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px 16px;
+        }
+
+        section {
+            display: none;
+        }
+
+        section.active {
+            display: block;
+        }
 
         h2 {
             font-size: 12px;
@@ -103,38 +144,24 @@
             margin: 22px 0 8px;
             text-shadow: 0 0 6px var(--accent-glow);
         }
-        h2:first-child { margin-top: 0; }
 
-        p { margin-bottom: 10px; max-width: 58ch; }
-
-        .taglist { color: var(--text-dim); }
-        .taglist strong { color: var(--text-main); font-weight: 700; }
-
-        .repo-filters { margin-bottom: 14px; }
-        .repo-filters button {
-            background: none; border: none; font-family: var(--font-mono);
-            color: var(--text-dim); font-size: 11px; margin-right: 10px; padding: 0; cursor: pointer;
+        h2:first-child {
+            margin-top: 0;
         }
-        .repo-filters button:hover, .repo-filters button.active { color: var(--green); text-shadow: 0 0 5px var(--accent-glow); }
 
-        .repo {
-            padding: 10px 0;
-            border-bottom: 1px dashed var(--border-color);
+        p {
+            margin-bottom: 10px;
+            max-width: 58ch;
         }
-        .repo:last-child { border-bottom: none; }
-        .repo-hdr { display: flex; align-items: baseline; gap: 8px; }
-        .repo-title { color: var(--text-main); font-weight: 700; }
-        .repo-tag { font-size: 10px; color: var(--text-dim); }
-        .repo-tag.public { color: var(--green); }
-        .repo-desc { color: var(--text-dim); font-size: 12px; margin: 3px 0 4px; }
 
-        .log-entry { margin-bottom: 18px; padding-left: 10px; border-left: 1px solid var(--border-color); }
-        .log-date { color: var(--green); font-size: 11px; display: block; margin-bottom: 2px; }
+        .taglist {
+            color: var(--text-dim);
+        }
 
-        .links-row { display: flex; flex-wrap: wrap; gap: 4px 16px; }
-
-        .badges-strip { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 6px; opacity: 0.85; filter: hue-rotate(45deg) saturate(1.3); }
-        .badges-strip img { width: 88px; height: 31px; border: 1px solid var(--border-color); }
+        .taglist strong {
+            color: var(--text-main);
+            font-weight: 700;
+        }
 
         footer {
             margin-top: 24px;
@@ -154,11 +181,12 @@
         }
     </style>
 </head>
+
 <body>
     <div class="wrap error-container">
         <pre class="doodle">  /\_/\  [404]
  ( x.x ) <//>
-  > ^ <  [DEAD]</pre>
+  > ^ <  </pre>
 
         <div class="site-title">where are you going ???</div>
         <div class="sub-title">you went digging and found nothing in kiss land</div>
@@ -171,10 +199,12 @@
         </nav>
 
         <section style="display: block;">
-            <p>whatever link you clicked is dead or never existed in the first place bro. tried fetching <span id="bad-url" style="color: var(--green);">path</span> but the web server just rejected you (i would too dw).</p>
+            <p>whatever link you clicked is dead or never existed in the first place bro. tried fetching <span
+                    id="bad-url" style="color: var(--purple);">path</span> but the web server just rejected you (i would
+                too dw).</p>
             <p>your options right now:</p>
             <div class="links-row" style="margin-top: 14px;">
-                <button class="nav-link" onclick="history.back()">be submissive (liek me) and go back</button>
+                <button class="nav-link" onclick="history.back()" aria-label="go back to the previous page">be submissive (liek me) and go back</button>
                 <a href="/" class="nav-link" style="display: inline-block;">or go fucking home ↗</a>
             </div>
         </section>
@@ -227,4 +257,5 @@
         });
     </script>
 </body>
+
 </html>
