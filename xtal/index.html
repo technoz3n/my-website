@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>xtal λ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background"></div>
+    <div class="overlay"></div>
+
+    <main class="experience">
+        <div class="visualizer">
+            <canvas id="spectrum"></canvas>
+            <div class="artwork">
+                <img src="assets/saw85-92.png" alt="Selected Ambient Works 85–92">
+            </div>
+        </div>
+
+        <div class="track-info">
+            <span class="artist">aphex twin</span>
+            <h1>xtal</h1>
+            <span class="album">selected ambient works 85–92</span>
+        </div>
+
+        <div class="player">
+            <button id="play" aria-label="Play">▶</button>
+            <audio id="audio" src="assets/xtal.mp3" preload="metadata"></audio>
+            <div class="progress-container">
+                <div class="progress" id="progress"></div>
+            </div>
+            <span id="time">0:00</span>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
