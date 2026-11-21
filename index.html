@@ -75,7 +75,7 @@
             user-select: none;
             filter: drop-shadow(0 0 5px var(--accent-glow));
         }
-        
+
         .site-title {
             font-size: 24px;
             font-weight: 700;
@@ -111,6 +111,9 @@
             position: relative;
             background: none;
             border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
             font-family: var(--font-mono);
             font-size: 15px;
             color: var(--text-dim);
@@ -120,22 +123,35 @@
             transition: color 0.2s;
         }
 
+        .nav-link svg {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+            fill: currentColor;
+        }
+
         .nav-link:hover,
         .nav-link.active {
             color: var(--purple);
             text-shadow: 0 0 6px var(--accent-glow);
+            position: relative;
         }
 
-        button.nav-link.active::before {
+        .nav-icon {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-link.active .nav-icon::before {
             content: "";
             position: absolute;
             top: -7px;
             left: -2px;
             right: -2px;
             height: 9px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 16' preserveAspectRatio='none'%3E%3Cpath d='M 4 15 L 4 3 L 22 12 L 78 12 L 96 3 L 96 15' fill='none' stroke='%239900ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-size: 100% 100%;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 16' preserveAspectRatio='none'%3E%3Cpath d='M 4 15 L 4 3 L 22 12 L 78 12 L 96 3 L 96 15' fill='none' stroke='%239900ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center / 100% 100%;
             filter: drop-shadow(0 0 4px rgba(195, 0, 255, 0.5));
             pointer-events: none;
         }
@@ -495,6 +511,197 @@
             color: var(--text-dim);
             font-size: 12px;
         }
+
+        .music-nav {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .music-nav svg {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        .musicstats {
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        section.musicstats {
+            display: none;
+        }
+
+        section.musicstats.active {
+            display: flex;
+        }
+
+        .music-week {
+            background: rgba(16, 13, 25, 0.72);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .featured-week {
+            border-color: rgba(183, 138, 255, 0.45);
+        }
+
+        .music-week-head,
+        .music-history-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .music-date,
+        .music-kicker,
+        .music-history-heading {
+            color: var(--text-dim);
+            font-family: var(--font-mono);
+            font-size: 12px;
+        }
+
+        .music-kicker {
+            color: var(--accent);
+        }
+
+        .music-total {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin: 8px 0 16px;
+        }
+
+        .music-total span {
+            font-size: clamp(36px, 7vw, 54px);
+            line-height: 1.1;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: -1.5px;
+        }
+
+        .music-total small {
+            color: var(--text-dim);
+            font-size: 13px;
+        }
+
+        .music-statline {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            border-top: 1px solid rgba(48, 33, 63, 0.7);
+            padding: 8px 0;
+            font-size: 13px;
+        }
+
+        .music-statline span,
+        .music-subnote,
+        .history-note {
+            color: var(--text-dim);
+        }
+
+        .music-statline strong {
+            color: var(--accent);
+            font-family: var(--font-mono);
+        }
+
+        .music-subnote {
+            font-size: 12px;
+            margin-top: -4px;
+        }
+
+        .music-chart-title {
+            margin: 18px 0 8px;
+            color: var(--text-main);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .artist-ranking,
+        .history-artists {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .artist-ranking li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(48, 33, 63, 0.45);
+        }
+
+        .artist-rank {
+            width: 24px;
+            flex-shrink: 0;
+            color: var(--purple);
+            font-family: var(--font-mono);
+            font-size: 12px;
+        }
+
+        .music-history-heading {
+            padding: 0 2px;
+        }
+
+        .music-history {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .history-week {
+            min-width: 0;
+        }
+
+        .history-total {
+            display: block;
+            font-size: 20px;
+            margin: 6px 0 8px;
+            color: var(--text-main);
+        }
+
+        .history-artists {
+            counter-reset: music-rank;
+            color: var(--text-dim);
+            font-size: 13px;
+        }
+
+        .history-artists li {
+            counter-increment: music-rank;
+            display: flex;
+            gap: 8px;
+            padding: 2px 0;
+        }
+
+        .history-artists li::before {
+            content: counter(music-rank, decimal-leading-zero);
+            color: var(--purple);
+            font-family: var(--font-mono);
+            font-size: 11px;
+            min-width: 20px;
+        }
+
+        .history-note {
+            font-size: 12px;
+            margin: 2px 0 8px;
+        }
+
+        .history-extra {
+            color: var(--text-main);
+            font-size: 12px;
+            margin: 10px 0 4px;
+        }
+
+        @media (max-width: 600px) {
+            .music-history {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 
@@ -503,7 +710,6 @@
         <pre class="doodle">  /\_/\
  ( o.o ) 
   > ^ <  <3</pre>
-
         <div class="site-title">techy (technoz3n)</div>
         <div class="sub-title">tech, obsessions &amp; stupidity :3</div>
         <div class="status-line">
@@ -511,15 +717,61 @@
             programming ^-^,
             <span id="spotify-ticker">fetching data...</span>
         </div>
-
         <nav>
-            <button class="nav-link active" onclick="switchTab('about')" id="btn-about">about</button>
-            <button class="nav-link" onclick="switchTab('shrine')" id="btn-shrine">projects</button>
-            <button class="nav-link" onclick="switchTab('log')" id="btn-log">devlog</button>
-            <button class="nav-link" onclick="switchTab('musicstats')" id="btn-musicstats">music stats</button>
-            <button class="nav-link" onclick="switchTab('nodes')" id="btn-nodes">socials</button>
-        </nav>
+            <button class="nav-link active" onclick="switchTab('about')" id="btn-about">
+                <span class="nav-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-person-fill" viewBox="0 0 16 16">
+                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 1 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+                    </svg>
+                </span>
+                about
+            </button>
 
+            <button class="nav-link" onclick="switchTab('shrine')" id="btn-shrine">
+                <span class="nav-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-folder-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.825a2 2 0 0 1-1.991-1.819l-.637-7a2 2 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3m-8.322.12q.322-.119.684-.12h5.396l-.707-.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981z" />
+                    </svg>
+                </span>
+                projects
+            </button>
+            <button class="nav-link" onclick="switchTab('log')" id="btn-log">
+                <span class="nav-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-book-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783" />
+                    </svg>
+                </span>
+                devlog
+            </button>
+            <button class="nav-link" onclick="switchTab('musicstats')" id="btn-musicstats">
+                <span class="nav-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-music-note-list" viewBox="0 0 16 16">
+                        <path d="M12 13c0 1.105-1.12 2-2.5 2S7 14.105 7 13s1.12 2 2.5 2 2.5.895 2.5 2" />
+                        <path fill-rule="evenodd" d="M12 3v10h-1V3z" />
+                        <path d="M11 2.82a1 1 0 0 1 .804-.98l3-.6A1 1 0 0 1 16 2.22V4l-5 1z" />
+                        <path fill-rule="evenodd"
+                            d="M0 11.5a.5.5 0 0 1 .5-.5H4a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5m0-4A.5.5 0 0 1 .5 7H8a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5m0-4A.5.5 0 0 1 .5 3H8a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5" />
+                    </svg>
+                </span>
+                music stats
+            </button>
+            <button class="nav-link" onclick="switchTab('nodes')" id="btn-nodes">
+                <span class="nav-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-share-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5" />
+                    </svg>
+                </span>
+                socials
+            </button>
+        </nav>
         <section id="view-about" class="active">
             <p>hello there, im techy (technoz3n), a high school student whos been messing with code, tech, and other
                 various things since 2019 (that was
@@ -534,7 +786,7 @@
             </p>
             <h2>games i like/have played</h2>
             <ul class="taglist">
-            <li><strong>ULTRAKILL</strong></li>
+                <li><strong>ULTRAKILL</strong></li>
                 <li>Anything in the Source, GoldSrc, Half-Life, or Portal universe</li>
                 <li>Minecraft</li>
                 <li>OneShot</li>
@@ -546,7 +798,7 @@
                 <li>Class of '09</li>
                 <li>7 Days to Die</li>
             </ul>
-        <p class="taglist">(this isn't an exhaustive list, you may check my Steam profile for a fuller list)</p>
+            <p class="taglist">(this isn't an exhaustive list, you may check my Steam profile for a fuller list)</p>
             <h2>musiiiic</h2>
             <p class="taglist">most absurd rotation you have heard: <strong>tool</strong>, <strong>heaven pierce
                     her</strong>, <strong>the weeknd (house of balloons / kiss land era)</strong>, <strong>master boot
@@ -557,7 +809,6 @@
                         socials ↗</u></button>
             </p>
         </section>
-
         <section id="view-shrine">
             <div class="projects-intro">
                 <p>stuff i (or others) have made and messed with</p>
@@ -584,7 +835,6 @@
                         <a class="repo-link" href="https://github.com/technoz3n/arsenal" target="_blank">repo ↗</a>
                     </div>
                 </article>
-
                 <article class="repo" data-lang="javascript">
                     <div>
                         <div class="repo-hdr">
@@ -598,7 +848,6 @@
                         <a class="repo-link" href="https://github.com/technoz3n/techys-arras" target="_blank">repo ↗</a>
                     </div>
                 </article>
-
                 <article class="repo" data-lang="java">
                     <div>
                         <div class="repo-hdr">
@@ -613,7 +862,6 @@
                         <a class="repo-link" href="https://github.com/technoz3n/UnfuckedLAN" target="_blank">repo ↗</a>
                     </div>
                 </article>
-
                 <article class="repo" data-lang="java">
                     <div>
                         <div class="repo-hdr">
@@ -627,7 +875,6 @@
                         <a class="repo-link" href="https://github.com/technoz3n/hack-n-slash" target="_blank">repo ↗</a>
                     </div>
                 </article>
-
                 <article class="repo" data-lang="javascript">
                     <div>
                         <div class="repo-hdr">
@@ -641,7 +888,6 @@
                         <a class="repo-link" href="https://github.com/technoz3n/ultragreed" target="_blank">repo ↗</a>
                     </div>
                 </article>
-
                 <article class="repo" data-lang="css">
                     <div>
                         <div class="repo-hdr">
@@ -656,7 +902,6 @@
                             ↗</a>
                     </div>
                 </article>
-
                 <article class="repo" data-lang="css">
                     <div>
                         <div class="repo-hdr">
@@ -672,7 +917,6 @@
                             target="_blank">repo ↗</a>
                     </div>
                 </article>
-
                 <article class="repo" data-lang="python">
                     <div>
                         <div class="repo-hdr">
@@ -689,7 +933,6 @@
                 </article>
             </div>
         </section>
-
         <section id="view-log">
             <div class="log-entry">
                 <span class="log-date">[2026-11-9]</span>
@@ -714,98 +957,113 @@
                     long as well</p>
             </div>
         </section>
-
-        <section id="view-musicstats">
-            <div class="log-entry">
-                <span class="log-date">november [11/16 - 11/21]</span>
-                <strong>i listened to music for 874 minutes this week</strong>
-                <p style="font-size: 13px; padding-left: 10px">the top artists this week were</p>
-                <p style="padding-left: 20px;">1. limp bizkit</p>
-                <p style="padding-left: 20px;">2. rage aginst the machine</p>
-                <p style="padding-left: 20px;">3. tool</p>
-                <p style="padding-left: 20px;">4. the weeknd</p>
-                <p style="padding-left: 20px;">5. deftones</p>
-                <p style="padding-left: 20px;">6. pitchshifter</p>
-                <p style="padding-left: 20px;">7. suicidal tendencies</p>
-                <p style="padding-left: 20px;">8. heaven pierce her</p>
-                <p style="padding-left: 20px;">9. dead kennedys</p>
-                <p style="padding-left: 20px;">10. primer 55</p>
-                <p style="font-size: 13px; padding-left: 10px">29% of my music listening was tool</p>
-                <p><strong>i spent 328 minutes with 1990s artists like slaves on dope and tool</strong></p>
-            </div>
-            <div class="log-entry">
-                <span class="log-date">november [11/9 - 11/15]</span>
-                <strong>i listened to music for 681 minutes this week</strong>
-                <p style="font-size: 13px; padding-left: 10px">the top artists this week were</p>
-                <p style="padding-left: 20px;">1. tool</p>
-                <p style="padding-left: 20px;">2. deftones</p>
-                <p style="padding-left: 20px;">3. limp bizkit</p>
-                <p style="padding-left: 20px;">4. rage against the machine</p>
-                <p style="padding-left: 20px;">5. heaven pierce her</p>
-                <p style="padding-left: 20px;">6. primer 55</p>
-                <p style="padding-left: 20px;">7. linkin park</p>
-                <p style="padding-left: 20px;">8. the weeknd</p>
-                <p style="padding-left: 20px;">9. pantera</p>
-                <p style="padding-left: 20px;">10. a perfect circle</p>
-            </div>
-            <div class="log-entry">
-                <span class="log-date">november [11/2 - 11/8]</span>
-                <strong>i listened to music for 2,301 minutes this week</strong>
-                <p style="font-size: 13px; padding-left: 10px">the top artists this week were</p>
-                <p style="padding-left: 20px;">1. tool</p>
-                <p style="padding-left: 20px;">2. rage against the machine</p>
-                <p style="padding-left: 20px;">3. the weeknd</p>
-                <p style="padding-left: 20px;">4. limp bizkit</p>
-                <p style="padding-left: 20px;">5. heaven pierce her</p>
-            </div>
-            <div class="log-entry">
-                <span class="log-date">october [10/26 - 11/1]</span>
-                <strong>i listened to music for 2,881 minutes this week</strong>
-                <p style="font-size: 13px; padding-left: 10px">the top artists this week were</p>
-                <p style="padding-left: 20px;">1. the weeknd</p>
-                <p style="padding-left: 20px;">2. tool</p>
-                <p style="padding-left: 20px;">3. that handsome devil</p>
-                <p style="padding-left: 20px;">4. deftones</p>
-                <p style="padding-left: 20px;">5. pitchshifter</p>
-            </div>
-            <div class="log-entry">
-                <span class="log-date">october [10/19 - 10/25]</span>
-                <strong>i listened to music for 1,439 minutes this week</strong>
-                <p style="font-size: 13px; padding-left: 10px">i spent 362 minutes listening to these three albums</p>
-                <p style="padding-left: 20px;">1. kiss land</p>
-                <p style="padding-left: 20px;">2. lateralus</p>
-                <p style="padding-left: 20px;">3. ultrakill: fraud</p>
-            </div>
-            <div class="log-entry">
-                <span class="log-date">october [10/12 - 10/18]</span>
-                <strong>i listened to music for 800 minutes this week</strong>
-                <p style="font-size: 13px; padding-left: 10px">i spent 226 minutes listening to these three albums</p>
-                <p style="padding-left: 20px;">1. ultrakill: infinite hyperdeath</p>
-                <p style="padding-left: 20px;">2. lateralus</p>
-                <p style="padding-left: 20px;">3. undertow</p>
-                <p><strong>i spent 172 minutes more than the average fan with the weeknd</strong></p>
-            </div>
-            <div class="log-entry">
-                <span class="log-date">october [10/5 - 10/11]</span>
-                <strong>i listened to music for 816 minutes this week</strong>
-                <p style="font-size: 13px; padding-left: 10px">i was deep in the 2000s</p>
-                <p style="font-size: 13px; padding-left: 10px">i spent 307 minutes with artists such as tool</p>
-                <p><strong>i spent three hours this week with tool</strong></p>
-            </div>
-            <div class="log-entry">
-                <span class="log-date">september [09/28 - 10/04]</span>
-                <strong>i listened to music for 5,711 minutes this month</strong>
-                <p style="font-size: 13px; padding-left: 20px">i spent 101 minutes listening to ULTRAKILL: FRAUD</p>
-                <p style="font-size: 13px; padding-left: 20px">i replayed In Absentia ΛΟΓΟΣ 6 times</p>
-                <p><strong>my top artists were:</strong></p>
-                <p style="padding-left: 20px;">1. heaven pierce her</p>
-                <p style="padding-left: 20px;">2. tool</p>
-                <p style="padding-left: 20px;">3. deftones</p>
-                <p style="padding-left: 20px;">4. the weeknd</p>
-                <p style="padding-left: 20px;">5. pitchshifter</p>
+        <section id="view-musicstats" class="musicstats">
+            <article class="music-week featured-week">
+                <div class="music-week-head">
+                    <span class="music-date">november [11/16 - 11/21]</span>
+                    <span class="music-kicker">weekly listening</span>
+                </div>
+                <div class="music-total"><span>874</span><small>minutes listened</small></div>
+                <div class="music-statline"><span>tool listening share</span><strong>29%</strong></div>
+                <div class="music-statline"><span>1990s artists</span><strong>328 min</strong></div>
+                <div class="music-subnote">spent with artists like slaves on dope and tool</div>
+                <div class="music-chart-title">top artists this week</div>
+                <ol class="artist-ranking">
+                    <li><span class="artist-rank">01</span><span>limp bizkit</span></li>
+                    <li><span class="artist-rank">02</span><span>rage against the machine</span></li>
+                    <li><span class="artist-rank">03</span><span>tool</span></li>
+                    <li><span class="artist-rank">04</span><span>the weeknd</span></li>
+                    <li><span class="artist-rank">05</span><span>deftones</span></li>
+                    <li><span class="artist-rank">06</span><span>pitchshifter</span></li>
+                    <li><span class="artist-rank">07</span><span>suicidal tendencies</span></li>
+                    <li><span class="artist-rank">08</span><span>heaven pierce her</span></li>
+                    <li><span class="artist-rank">09</span><span>dead kennedys</span></li>
+                    <li><span class="artist-rank">10</span><span>primer 55</span></li>
+                </ol>
+            </article>
+            <div class="music-history-heading"><span>listening history</span><span>older weeks</span></div>
+            <div class="music-history">
+                <article class="music-week history-week">
+                    <span class="music-date">november [11/9 - 11/15]</span>
+                    <strong class="history-total">681 minutes</strong>
+                    <ol class="history-artists">
+                        <li>tool</li>
+                        <li>deftones</li>
+                        <li>limp bizkit</li>
+                        <li>rage against the machine</li>
+                        <li>heaven pierce her</li>
+                        <li>primer 55</li>
+                        <li>linkin park</li>
+                        <li>the weeknd</li>
+                        <li>pantera</li>
+                        <li>a perfect circle</li>
+                    </ol>
+                </article>
+                <article class="music-week history-week">
+                    <span class="music-date">november [11/2 - 11/8]</span>
+                    <strong class="history-total">2,301 minutes</strong>
+                    <ol class="history-artists">
+                        <li>tool</li>
+                        <li>rage against the machine</li>
+                        <li>the weeknd</li>
+                        <li>limp bizkit</li>
+                        <li>heaven pierce her</li>
+                    </ol>
+                </article>
+                <article class="music-week history-week">
+                    <span class="music-date">october [10/26 - 11/1]</span>
+                    <strong class="history-total">2,881 minutes</strong>
+                    <ol class="history-artists">
+                        <li>the weeknd</li>
+                        <li>tool</li>
+                        <li>that handsome devil</li>
+                        <li>deftones</li>
+                        <li>pitchshifter</li>
+                    </ol>
+                </article>
+                <article class="music-week history-week">
+                    <span class="music-date">october [10/19 - 10/25]</span>
+                    <strong class="history-total">1,439 minutes</strong>
+                    <div class="history-note">362 minutes across these albums</div>
+                    <ol class="history-artists">
+                        <li>kiss land</li>
+                        <li>lateralus</li>
+                        <li>ultrakill: fraud</li>
+                    </ol>
+                </article>
+                <article class="music-week history-week">
+                    <span class="music-date">october [10/12 - 10/18]</span>
+                    <strong class="history-total">800 minutes</strong>
+                    <div class="history-note">226 minutes across these albums</div>
+                    <ol class="history-artists">
+                        <li>ultrakill: infinite hyperdeath</li>
+                        <li>lateralus</li>
+                        <li>undertow</li>
+                    </ol>
+                    <p class="history-extra">172 minutes more than the average fan with the weeknd</p>
+                </article>
+                <article class="music-week history-week">
+                    <span class="music-date">october [10/5 - 10/11]</span>
+                    <strong class="history-total">816 minutes</strong>
+                    <div class="history-note">deep in the 2000s · 307 minutes with artists such as tool</div>
+                    <p class="history-extra">three hours this week with tool</p>
+                </article>
+                <article class="music-week history-week">
+                    <span class="music-date">september [09/28 - 10/04]</span>
+                    <strong class="history-total">5,711 minutes</strong>
+                    <div class="history-note">monthly recap</div>
+                    <p class="history-extra">101 minutes listening to ULTRAKILL: FRAUD · replayed In Absentia ΛΟΓΟΣ 6
+                        times</p>
+                    <ol class="history-artists">
+                        <li>heaven pierce her</li>
+                        <li>tool</li>
+                        <li>deftones</li>
+                        <li>the weeknd</li>
+                        <li>pitchshifter</li>
+                    </ol>
+                </article>
             </div>
         </section>
-
         <section id="view-nodes">
             <p class="socials-intro">where to find me around the web</p>
             <div class="socials-grid">
@@ -821,11 +1079,14 @@
                     <span class="social-arrow">↗</span>
                 </a>
                 <a class="social-card" href="https://steamcommunity.com/id/technoz3n" target="_blank">
-                    <span class="social-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-steam" viewBox="0 0 16 16">
-                        <path d="M.329 10.333A8.01 8.01 0 0 0 7.99 16C12.414 16 16 12.418 16 8s-3.586-8-8.009-8A8.006 8.006 0 0 0 0 7.468l.003.006 4.304 1.769A2.2 2.2 0 0 1 5.62 8.88l1.96-2.844-.001-.04a3.046 3.046 0 0 1 3.042-3.043 3.046 3.046 0 0 1 3.042 3.043 3.047 3.047 0 0 1-3.111 3.044l-2.804 2a2.223 2.223 0 0 1-3.075 2.11 2.22 2.22 0 0 1-1.312-1.568L.33 10.333Z"/>
-                        <path d="M4.868 12.683a1.715 1.715 0 0 0 1.318-3.165 1.7 1.7 0 0 0-1.263-.02l1.023.424a1.261 1.261 0 1 1-.97 2.33l-.99-.41a1.7 1.7 0 0 0 .882.84Zm3.726-6.687a2.03 2.03 0 0 0 2.027 2.029 2.03 2.03 0 0 0 2.027-2.029 2.03 2.03 0 0 0-2.027-2.027 2.03 2.03 0 0 0-2.027 2.027m2.03-1.527a1.524 1.524 0 1 1-.002 3.048 1.524 1.524 0 0 1 .002-3.048"/>
-                    </svg>
-                </span>
+                    <span class="social-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                            height="16" fill="currentColor" class="bi bi-steam" viewBox="0 0 16 16">
+                            <path
+                                d="M.329 10.333A8.01 8.01 0 0 0 7.99 16C12.414 16 16 12.418 16 8s-3.586-8-8.009-8A8.006 8.006 0 0 0 0 7.468l.003.006 4.304 1.769A2.2 2.2 0 0 1 5.62 8.88l1.96-2.844-.001-.04a3.046 3.046 0 0 1 3.042-3.043 3.046 3.046 0 0 1 3.042 3.043 3.047 3.047 0 0 1-3.111 3.044l-2.804 2a2.223 2.223 0 0 1-3.075 2.11 2.22 2.22 0 0 1-1.312-1.568L.33 10.333Z" />
+                            <path
+                                d="M4.868 12.683a1.715 1.715 0 0 0 1.318-3.165 1.7 1.7 0 0 0-1.263-.02l1.023.424a1.261 1.261 0 1 1-.97 2.33l-.99-.41a1.7 1.7 0 0 0 .882.84Zm3.726-6.687a2.03 2.03 0 0 0 2.027 2.029 2.03 2.03 0 0 0 2.027-2.029 2.03 2.03 0 0 0-2.027-2.027 2.03 2.03 0 0 0-2.027 2.027m2.03-1.527a1.524 1.524 0 1 1-.002 3.048 1.524 1.524 0 0 1 .002-3.048" />
+                        </svg>
+                    </span>
                     <span class="social-meta">
                         <span class="social-name">steam</span>
                         <span class="social-handle">steamcommunity.com/id/technoz3n</span>
@@ -879,7 +1140,6 @@
                 </a>
             </div>
         </section>
-
         <div class="badges-strip">
             <img src="img/badges/free.gif" alt="free">
             <img src="img/badges/firefox3.gif" alt="firefox">
