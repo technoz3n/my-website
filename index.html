@@ -45,7 +45,7 @@
             font-size: 15px;
             font-weight: 500;
             line-height: 1.7;
-            padding: 48px 24px 28px;
+            padding: 16px 24px 28px;
             text-shadow: 0 0 4px rgba(195, 0, 255, 0.15);
         }
 
@@ -75,7 +75,7 @@
             user-select: none;
             filter: drop-shadow(0 0 5px var(--accent-glow));
         }
-
+        
         .site-title {
             font-size: 24px;
             font-weight: 700;
@@ -347,6 +347,63 @@
             margin-bottom: 2px;
         }
 
+        #view-about {
+            width: 100%;
+            background: rgba(16, 13, 25, 0.72);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+
+        #view-about p {
+            max-width: none;
+        }
+
+        #view-about h2 {
+            margin-top: 20px;
+        }
+
+        #view-about h2:first-child {
+            margin-top: 0;
+        }
+
+        #view-about ul {
+            padding-left: 20px;
+            margin-left: 0;
+        }
+
+        .social-icon {
+            width: 22px;
+            height: 22px;
+            flex-shrink: 0;
+            color: var(--accent);
+            opacity: 0.9;
+        }
+
+        .social-icon svg {
+            display: block;
+            width: 100%;
+            height: 100%;
+            fill: currentColor;
+        }
+
+        .social-icon svg.social-icon-outline {
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.7;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .social-card {
+            justify-content: flex-start;
+        }
+
+        .social-meta {
+            flex: 1;
+        }
+
         .socials-intro {
             color: var(--text-dim);
             font-size: 13px;
@@ -416,7 +473,9 @@
             margin-top: 32px;
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 32px;
+            width: 100%;
+            box-sizing: border-box;
             opacity: 0.85;
             filter: saturate(1.3);
         }
@@ -462,24 +521,41 @@
         </nav>
 
         <section id="view-about" class="active">
-            <p>hello there, im techy (technoz3n), a high school student whos been messing with code, tech, and other various things since 2019 (that was
-                <span class="days-2019-val">...</span> days ago!)</p>
-            <p>like everyone, i started with scratch. but then i moved through web apps, and minecraft bedrock scripting.
-                i experiment now with java, and anything else, really! (also even though python is the easiest language some
+            <p>hello there, im techy (technoz3n), a high school student whos been messing with code, tech, and other
+                various things since 2019 (that was
+                <span class="days-2019-val">...</span> days ago!)
+            </p>
+            <p>like everyone, i started with scratch. but then i moved through web apps, and minecraft bedrock
+                scripting.
+                i experiment now with java, and anything else, really! (also even though python is the easiest language
+                some
                 say, i still dont know it fully, probably because ive never had to write anything in it)
                 i mostly just fork open-source projects or build hyper-specific utilities i need
             </p>
             <h2>games i like/have played</h2>
-            <p class="taglist"><strong>ultrakill</strong> · anything in the source, goldsrc, half life, or portal universe · minecraft · oneshot · kinitopet · postal 2 · buckshot roulette · doki doki
-                literature club · geometry dash (i suck ass) · class of 09 · 7 days to die</p>
-                <p class="taglist">(this isnt an exhaustive list, you may check my steam profile for a fuller list)</p>
+            <ul class="taglist">
+            <li><strong>ULTRAKILL</strong></li>
+                <li>Anything in the Source, GoldSrc, Half-Life, or Portal universe</li>
+                <li>Minecraft</li>
+                <li>OneShot</li>
+                <li>Kinitopet</li>
+                <li>Postal 2</li>
+                <li>Buckshot Roulette</li>
+                <li>Doki Doki Literature Club</li>
+                <li>Geometry Dash (i suck ass)</li>
+                <li>Class of '09</li>
+                <li>7 Days to Die</li>
+            </ul>
+        <p class="taglist">(this isn't an exhaustive list, you may check my Steam profile for a fuller list)</p>
             <h2>musiiiic</h2>
             <p class="taglist">most absurd rotation you have heard: <strong>tool</strong>, <strong>heaven pierce
                     her</strong>, <strong>the weeknd (house of balloons / kiss land era)</strong>, <strong>master boot
                     record / keygen church</strong>, <strong>aphex twin</strong>, <strong>deftones</strong>,
                 <strong>pitchshifter</strong>, <strong>limp bizkit, kelly bailey, sean terry, kevin sherwood</strong>,
                 if you want to see the entire discography though, head over to <button class="nav-link"
-                    onclick="switchTab('nodes')" style="display:inline; padding:0; font-family: var(--font-main);"><u>my socials ↗</u></button></p>
+                    onclick="switchTab('nodes')" style="display:inline; padding:0; font-family: var(--font-main);"><u>my
+                        socials ↗</u></button>
+            </p>
         </section>
 
         <section id="view-shrine">
@@ -529,7 +605,8 @@
                             <span class="repo-title">UnfuckedLAN</span>
                             <span class="repo-tag public">public</span>
                         </div>
-                        <div class="repo-desc">forces offline mode on integrated servers because wrapper mods are garbage</div>
+                        <div class="repo-desc">forces offline mode on integrated servers because wrapper mods are
+                            garbage</div>
                     </div>
                     <div class="repo-footer">
                         <span class="repo-lang"><span class="lang-dot lang-java"></span>java</span>
@@ -575,7 +652,8 @@
                     </div>
                     <div class="repo-footer">
                         <span class="repo-lang"><span class="lang-dot lang-css"></span>css</span>
-                        <a class="repo-link" href="https://github.com/technoz3n/firefox-theme" target="_blank">repo ↗</a>
+                        <a class="repo-link" href="https://github.com/technoz3n/firefox-theme" target="_blank">repo
+                            ↗</a>
                     </div>
                 </article>
 
@@ -585,11 +663,13 @@
                             <span class="repo-title">rosepine-discord-fixed</span>
                             <span class="repo-tag public">public</span>
                         </div>
-                        <div class="repo-desc">fixes sidebar and search contrast issues for the rosé pine discord theme</div>
+                        <div class="repo-desc">fixes sidebar and search contrast issues for the rosé pine discord theme
+                        </div>
                     </div>
                     <div class="repo-footer">
                         <span class="repo-lang"><span class="lang-dot lang-css"></span>css</span>
-                        <a class="repo-link" href="https://github.com/technoz3n/rosepine-discord-fixed" target="_blank">repo ↗</a>
+                        <a class="repo-link" href="https://github.com/technoz3n/rosepine-discord-fixed"
+                            target="_blank">repo ↗</a>
                     </div>
                 </article>
 
@@ -603,7 +683,8 @@
                     </div>
                     <div class="repo-footer">
                         <span class="repo-lang"><span class="lang-dot lang-python"></span>python</span>
-                        <a class="repo-link" href="https://github.com/technoz3n/wine-app-builder" target="_blank">repo ↗</a>
+                        <a class="repo-link" href="https://github.com/technoz3n/wine-app-builder" target="_blank">repo
+                            ↗</a>
                     </div>
                 </article>
             </div>
@@ -729,6 +810,10 @@
             <p class="socials-intro">where to find me around the web</p>
             <div class="socials-grid">
                 <a class="social-card" href="https://github.com/technoz3n" target="_blank">
+                    <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24">
+                            <path
+                                d="M12 .8a11.2 11.2 0 0 0-3.54 21.83c.56.1.77-.24.77-.54v-2.1c-3.14.68-3.8-1.33-3.8-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.69.08-.69 1.13.08 1.72 1.16 1.72 1.16 1 .98 2.62.7 3.26.54.1-.72.4-1.22.72-1.5-2.5-.29-5.13-1.25-5.13-5.56 0-1.23.44-2.24 1.16-3.03-.12-.29-.5-1.43.11-2.98 0 0 .95-.3 3.1 1.16a10.8 10.8 0 0 1 5.64 0c2.15-1.46 3.1-1.16 3.1-1.16.62 1.55.23 2.69.12 2.98.72.79 1.15 1.8 1.15 3.03 0 4.32-2.63 5.27-5.14 5.55.41.36.77 1.06.77 2.14v3.18c0 .3.2.65.78.54A11.2 11.2 0 0 0 12 .8Z" />
+                        </svg></span>
                     <span class="social-meta">
                         <span class="social-name">github</span>
                         <span class="social-handle">github.com/technoz3n</span>
@@ -736,6 +821,11 @@
                     <span class="social-arrow">↗</span>
                 </a>
                 <a class="social-card" href="https://steamcommunity.com/id/technoz3n" target="_blank">
+                    <span class="social-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-steam" viewBox="0 0 16 16">
+                        <path d="M.329 10.333A8.01 8.01 0 0 0 7.99 16C12.414 16 16 12.418 16 8s-3.586-8-8.009-8A8.006 8.006 0 0 0 0 7.468l.003.006 4.304 1.769A2.2 2.2 0 0 1 5.62 8.88l1.96-2.844-.001-.04a3.046 3.046 0 0 1 3.042-3.043 3.046 3.046 0 0 1 3.042 3.043 3.047 3.047 0 0 1-3.111 3.044l-2.804 2a2.223 2.223 0 0 1-3.075 2.11 2.22 2.22 0 0 1-1.312-1.568L.33 10.333Z"/>
+                        <path d="M4.868 12.683a1.715 1.715 0 0 0 1.318-3.165 1.7 1.7 0 0 0-1.263-.02l1.023.424a1.261 1.261 0 1 1-.97 2.33l-.99-.41a1.7 1.7 0 0 0 .882.84Zm3.726-6.687a2.03 2.03 0 0 0 2.027 2.029 2.03 2.03 0 0 0 2.027-2.029 2.03 2.03 0 0 0-2.027-2.027 2.03 2.03 0 0 0-2.027 2.027m2.03-1.527a1.524 1.524 0 1 1-.002 3.048 1.524 1.524 0 0 1 .002-3.048"/>
+                    </svg>
+                </span>
                     <span class="social-meta">
                         <span class="social-name">steam</span>
                         <span class="social-handle">steamcommunity.com/id/technoz3n</span>
@@ -743,6 +833,10 @@
                     <span class="social-arrow">↗</span>
                 </a>
                 <a class="social-card" href="https://discord.com/users/1152050115964567563" target="_blank">
+                    <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24">
+                            <path
+                                d="M19.3 5.2a17 17 0 0 0-4.2-1.3l-.5 1a15.6 15.6 0 0 0-5.2 0l-.5-1a17 17 0 0 0-4.2 1.3C2.1 9 1.4 12.7 1.8 16.3a17.2 17.2 0 0 0 5.2 2.6l1.1-1.8c-.6-.2-1.2-.5-1.7-.8l.4-.3a12.2 12.2 0 0 0 10.4 0l.4.3c-.5.3-1.1.6-1.7.8l1.1 1.8a17.2 17.2 0 0 0 5.2-2.6c.5-4.2-.7-7.8-3.1-11.1ZM8.6 14.4c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2Zm6.8 0c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2Z" />
+                        </svg></span>
                     <span class="social-meta">
                         <span class="social-name">discord</span>
                         <span class="social-handle">1152050115964567563</span>
@@ -750,6 +844,10 @@
                     <span class="social-arrow">↗</span>
                 </a>
                 <a class="social-card" href="https://youtube.com/@technoz3n" target="_blank">
+                    <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24">
+                            <path
+                                d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.4V8.6l5.9 3.4-5.9 3.4Z" />
+                        </svg></span>
                     <span class="social-meta">
                         <span class="social-name">youtube</span>
                         <span class="social-handle">@technoz3n</span>
@@ -757,6 +855,10 @@
                     <span class="social-arrow">↗</span>
                 </a>
                 <a class="social-card" href="https://tiktok.com/@technoz3n" target="_blank">
+                    <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24">
+                            <path
+                                d="M19.6 5.4a6.5 6.5 0 0 1-4-3.7V1h-4.1v14.2a3.1 3.1 0 1 1-2.2-3v-4.2a7.3 7.3 0 1 0 6.3 7.2V7.8a10.4 10.4 0 0 0 5.1 1.3V5a6.4 6.4 0 0 1-1.1-.1Z" />
+                        </svg></span>
                     <span class="social-meta">
                         <span class="social-name">tiktok</span>
                         <span class="social-handle">@technoz3n</span>
@@ -764,6 +866,11 @@
                     <span class="social-arrow">↗</span>
                 </a>
                 <a class="social-card" href="https://xf1re.com/profile/technozen" target="_blank">
+                    <span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24" class="social-icon-outline">
+                            <circle cx="12" cy="12" r="9" />
+                            <path
+                                d="M3 12h18M12 3c2.6 2.4 3.5 5.7 3.5 9s-.9 6.6-3.5 9M12 3c-2.6 2.4-3.5 5.7-3.5 9s.9 6.6 3.5 9" />
+                        </svg></span>
                     <span class="social-meta">
                         <span class="social-name">xf1re</span>
                         <span class="social-handle">xf1re.com/profile/technozen</span>
@@ -781,14 +888,13 @@
             <img src="img/badges/anythingbut.gif" alt="anything but chrome!">
             <img src="img/badges/classicgaming.gif" alt="og gamer">
         </div>
-
         <footer>
-            <span>technoz3n :3 [キッスランド]</span>
-            <span>uptime: <span class="days-2019-val">...</span> days</span>
+            <span>technoz3n :3</span>
+            <span>lifetime: <span class="days-2019-val">...</span> days</span>
         </footer>
     </div>
-
     <script src="./oneko.js"></script>
     <script src="./site.js"></script>
 </body>
+
 </html>
