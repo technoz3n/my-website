@@ -45,7 +45,7 @@
             font-size: 15px;
             font-weight: 500;
             line-height: 1.7;
-            padding: 80px 24px 28px;
+            padding: 48px 24px 28px;
             text-shadow: 0 0 4px rgba(195, 0, 255, 0.15);
         }
 
@@ -347,11 +347,69 @@
             margin-bottom: 2px;
         }
 
-        .links-row {
+        .socials-intro {
+            color: var(--text-dim);
+            font-size: 13px;
+            margin-bottom: 14px;
+        }
+
+        .socials-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        @media (max-width: 600px) {
+            .socials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .social-card {
+            background: rgba(16, 13, 25, 0.9);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 13px 15px;
             display: flex;
-            flex-wrap: wrap;
-            gap: 6px 20px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            transition: border-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .social-card:hover {
+            border-color: var(--accent);
+            text-decoration: none;
+        }
+
+        .social-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            min-width: 0;
+        }
+
+        .social-name {
+            font-family: var(--font-mono);
             font-size: 14px;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .social-handle {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-dim);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .social-arrow {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--accent);
+            flex-shrink: 0;
         }
 
         .badges-strip {
@@ -668,13 +726,50 @@
         </section>
 
         <section id="view-nodes">
-            <div class="links-row">
-                <a href="https://github.com/technoz3n" target="_blank">github ↗</a>
-                <a href="https://steamcommunity.com/id/technoz3n" target="_blank">steam ↗</a>
-                <a href="https://discord.com/users/1152050115964567563" target="_blank">discord ↗</a>
-                <a href="https://youtube.com/@technoz3n" target="_blank">youtube ↗</a>
-                <a href="https://tiktok.com/@technoz3n" target="_blank">tiktok ↗</a>
-                <a href="https://xf1re.com/profile/technozen" target="_blank">xf1re ↗</a>
+            <p class="socials-intro">where to find me around the web</p>
+            <div class="socials-grid">
+                <a class="social-card" href="https://github.com/technoz3n" target="_blank">
+                    <span class="social-meta">
+                        <span class="social-name">github</span>
+                        <span class="social-handle">github.com/technoz3n</span>
+                    </span>
+                    <span class="social-arrow">↗</span>
+                </a>
+                <a class="social-card" href="https://steamcommunity.com/id/technoz3n" target="_blank">
+                    <span class="social-meta">
+                        <span class="social-name">steam</span>
+                        <span class="social-handle">steamcommunity.com/id/technoz3n</span>
+                    </span>
+                    <span class="social-arrow">↗</span>
+                </a>
+                <a class="social-card" href="https://discord.com/users/1152050115964567563" target="_blank">
+                    <span class="social-meta">
+                        <span class="social-name">discord</span>
+                        <span class="social-handle">1152050115964567563</span>
+                    </span>
+                    <span class="social-arrow">↗</span>
+                </a>
+                <a class="social-card" href="https://youtube.com/@technoz3n" target="_blank">
+                    <span class="social-meta">
+                        <span class="social-name">youtube</span>
+                        <span class="social-handle">@technoz3n</span>
+                    </span>
+                    <span class="social-arrow">↗</span>
+                </a>
+                <a class="social-card" href="https://tiktok.com/@technoz3n" target="_blank">
+                    <span class="social-meta">
+                        <span class="social-name">tiktok</span>
+                        <span class="social-handle">@technoz3n</span>
+                    </span>
+                    <span class="social-arrow">↗</span>
+                </a>
+                <a class="social-card" href="https://xf1re.com/profile/technozen" target="_blank">
+                    <span class="social-meta">
+                        <span class="social-name">xf1re</span>
+                        <span class="social-handle">xf1re.com/profile/technozen</span>
+                    </span>
+                    <span class="social-arrow">↗</span>
+                </a>
             </div>
         </section>
 
@@ -694,84 +789,6 @@
     </div>
 
     <script src="./oneko.js"></script>
-    <script>
-        function daysSince(year, month, day) {
-            const then = new Date(year, month, day);
-            const now = new Date();
-            return Math.floor((now - then) / (1000 * 60 * 60 * 24));
-        }
-
-        function fillDayCounters() {
-            const since2019 = daysSince(2019, 0, 1);
-            document.querySelectorAll('#days-since-2019, .days-2019-val').forEach(el => el.textContent = since2019);
-        }
-        fillDayCounters();
-
-        async function fetchSpotifyLanyard() {
-            const discordId = '1152050115964567563';
-            const ticker = document.getElementById('spotify-ticker');
-            if (!ticker) return;
-            try {
-                const res = await fetch(`https://api.lanyard.rest/v1/users/${discordId}`);
-                const data = await res.json();
-                if (data.success && data.data.listening_to_spotify) {
-                    const s = data.data.spotify;
-                    ticker.textContent = `im listening to ${s.song.toLowerCase()} by ${s.artist.toLowerCase()} from ${s.album.toLowerCase()}!`;
-                } else {
-                    ticker.textContent = "im not listening to anything right now so that probably means im extra sad";
-                }
-            } catch (err) {
-                ticker.textContent = "im not awake or online or whatever";
-            }
-        }
-        fetchSpotifyLanyard();
-        setInterval(fetchSpotifyLanyard, 10000);
-
-        function tickClock() {
-            const el = document.getElementById('taskbar-clock');
-            if (!el) return;
-            const now = new Date();
-            el.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        }
-        tickClock();
-        setInterval(tickClock, 1000);
-
-        function switchTab(tabId) {
-            ['about', 'shrine', 'log', 'nodes', 'musicstats'].forEach(t => {
-                const view = document.getElementById(`view-${t}`);
-                const btn = document.getElementById(`btn-${t}`);
-                if (view) view.classList.toggle('active', t === tabId);
-                if (btn) btn.classList.toggle('active', t === tabId);
-            });
-        }
-
-        function filterRepos(lang, btnEl) {
-            const cards = document.querySelectorAll('.repo-grid .repo');
-            const counter = document.getElementById('repo-count');
-            document.querySelectorAll('.repo-filters button').forEach(b => b.classList.remove('active'));
-            if (btnEl) btnEl.classList.add('active');
-            let visibleCount = 0;
-            cards.forEach(card => {
-                const match = lang === 'all' || card.dataset.lang === lang;
-                card.style.display = match ? 'flex' : 'none';
-                if (match) visibleCount++;
-            });
-            if (counter) {
-                counter.textContent = visibleCount === 1 ? '1 project' : `${visibleCount} projects`;
-            }
-        }
-
-        const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
-        let konamiIndex = 0;
-        document.addEventListener('keydown', (e) => {
-            if (e.key === konamiCode[konamiIndex]) konamiIndex++;
-            else konamiIndex = (e.key === konamiCode[0]) ? 1 : 0;
-            if (konamiIndex === konamiCode.length) {
-                konamiIndex = 0;
-                console.log("/secret.html");
-            }
-        });
-    </script>
+    <script src="./site.js"></script>
 </body>
-
 </html>

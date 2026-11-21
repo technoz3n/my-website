@@ -3,83 +3,68 @@ function daysSince(year, month, day) {
     const now = new Date();
     return Math.floor((now - then) / (1000 * 60 * 60 * 24));
 }
-
 function fillDayCounters() {
     const since2019 = daysSince(2019, 0, 1);
-    const sinceXO = daysSince(2025, 9, 24);
-    document.querySelectorAll('#days-since-2019, #days-since-2019-b').forEach(el => {
-        el.textContent = since2019;
-    });
-    document.querySelectorAll('#days-since-xo, #days-since-xo-2').forEach(el => {
-        el.textContent = sinceXO;
-    });
+    document.querySelectorAll('#days-since-2019, .days-2019-val').forEach(el => el.textContent = since2019);
 }
 fillDayCounters();
-
 async function fetchSpotifyLanyard() {
     const discordId = '1152050115964567563';
-    const titleEls = document.querySelectorAll('.track-title');
-    const artistEls = document.querySelectorAll('.track-artist');
-    if (!titleEls.length) return;
+    const ticker = document.getElementById('spotify-ticker');
+    if (!ticker) return;
     try {
         const res = await fetch(`https://api.lanyard.rest/v1/users/${discordId}`);
         const data = await res.json();
         if (data.success && data.data.listening_to_spotify) {
-            const spotify = data.data.spotify;
-            titleEls.forEach(el => el.textContent = spotify.song.toLowerCase());
-            artistEls.forEach(el => el.textContent = `${spotify.artist.toLowerCase()} — ${spotify.album.toLowerCase()}`);
+            const s = data.data.spotify;
+            ticker.textContent = `im listening to ${s.song.toLowerCase()} by ${s.artist.toLowerCase()} from ${s.album.toLowerCase()}!`;
         } else {
-            titleEls.forEach(el => el.textContent = 'nothing');
-            artistEls.forEach(el => el.textContent = 'nada');
+            ticker.textContent = "im not listening to anything right now so that probably means im extra sad";
         }
     } catch (err) {
-        console.error('lanyard fetch error:', err);
+        ticker.textContent = "im not awake or online or whatever";
     }
 }
 fetchSpotifyLanyard();
 setInterval(fetchSpotifyLanyard, 10000);
-
 function tickClock() {
     const el = document.getElementById('taskbar-clock');
     if (!el) return;
     const now = new Date();
-    el.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    el.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 }
 tickClock();
 setInterval(tickClock, 1000);
-
-function initRepoFilter() {
-    const chips = document.querySelectorAll('.filter-chip');
-    const rows = document.querySelectorAll('.repo-row');
-    if (!chips.length || !rows.length) return;
-    chips.forEach(chip => {
-        chip.addEventListener('click', () => {
-            chips.forEach(c => c.classList.remove('active'));
-            chip.classList.add('active');
-            const lang = chip.dataset.lang;
-            rows.forEach(row => {
-                const match = lang === 'all' || row.dataset.lang === lang;
-                row.style.display = match ? '' : 'none';
-            });
-        });
+function switchTab(tabId) {
+    ['about', 'shrine', 'log', 'nodes', 'musicstats'].forEach(t => {
+        const view = document.getElementById(`view-${t}`);
+        const btn = document.getElementById(`btn-${t}`);
+        if (view) view.classList.toggle('active', t === tabId);
+        if (btn) btn.classList.toggle('active', t === tabId);
     });
 }
-initRepoFilter();
-const konamiCode = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+function filterRepos(lang, btnEl) {
+    const cards = document.querySelectorAll('.repo-grid .repo');
+    const counter = document.getElementById('repo-count');
+    document.querySelectorAll('.repo-filters button').forEach(b => b.classList.remove('active'));
+    if (btnEl) btnEl.classList.add('active');
+    let visibleCount = 0;
+    cards.forEach(card => {
+        const match = lang === 'all' || card.dataset.lang === lang;
+        card.style.display = match ? 'flex' : 'none';
+        if (match) visibleCount++;
+    });
+    if (counter) {
+        counter.textContent = visibleCount === 1 ? '1 project' : `${visibleCount} projects`;
+    }
+}
+const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
 let konamiIndex = 0;
 document.addEventListener('keydown', (e) => {
-  if (e.key === konamiCode[konamiIndex]) {
-    konamiIndex++;
-  } else {
-    konamiIndex = (e.key === konamiCode[0]) ? 1 : 0;
-  }
-
-  if (konamiIndex === konamiCode.length) {
-    konamiIndex = 0;
-    console.log(
-      '%cCONNECTION RE-ESTABLISHED.\n%c/secret.html',
-      'color:#ff1a1a; font-family:monospace; font-size:14px;',
-      'color:#7a0d0d; font-family:monospace; font-size:12px;'
-    );
-  }
+    if (e.key === konamiCode[konamiIndex]) konamiIndex++;
+    else konamiIndex = (e.key === konamiCode[0]) ? 1 : 0;
+    if (konamiIndex === konamiCode.length) {
+        konamiIndex = 0;
+        console.log("/secret.html");
+    }
 });
