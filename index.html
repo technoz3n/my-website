@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Rubik:wght@500;600;700&display=swap"
@@ -58,7 +58,6 @@
         a:hover {
             text-decoration: underline;
             color: #fff;
-            text-shadow: 0 0 8px var(--accent);
         }
 
         .wrap {
@@ -125,12 +124,6 @@
             color: var(--purple);
             text-shadow: 0 0 6px var(--accent-glow);
         }
-
-        .nav-link.active::before {
-            content: "> ";
-            color: var(--purple);
-        }
-
         section {
             display: none;
         }
@@ -152,7 +145,6 @@
         }
 
         p {
-            margin-bottom: 10px;
             max-width: 58ch;
         }
 
@@ -165,60 +157,165 @@
             font-weight: 700;
         }
 
-        .repo-filters {
+        .projects-intro {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 8px 12px;
             margin-bottom: 14px;
         }
 
+        .projects-intro p {
+            margin-bottom: 0;
+        }
+
+        .repo-count {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--text-dim);
+        }
+
+        .repo-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 16px;
+        }
+
         .repo-filters button {
-            background: none;
-            border: none;
+            background: rgba(16, 13, 25, 0.85);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
             font-family: var(--font-mono);
             color: var(--text-dim);
             font-size: 11px;
-            margin-right: 10px;
-            padding: 0;
+            padding: 4px 10px;
             cursor: pointer;
+            transition: all 0.2s ease;
         }
 
-        .repo-filters button:hover,
+        .repo-filters button:hover {
+            color: var(--text-main);
+            border-color: var(--accent);
+        }
+
         .repo-filters button.active {
-            color: var(--purple);
-            text-shadow: 0 0 5px var(--accent-glow);
+            color: var(--text-main);
+            border-color: var(--purple);
+            background: rgba(75, 0, 136, 0.35);
+        }
+
+        .repo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        @media (max-width: 560px) {
+            .repo-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .repo {
-            padding: 10px 0;
-            border-bottom: 1px dashed var(--border-color);
+            background: rgba(16, 13, 25, 0.9);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 13px 14px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 10px;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .repo:last-child {
-            border-bottom: none;
+        .repo:hover {
+            border-color: var(--accent)
         }
 
         .repo-hdr {
             display: flex;
-            align-items: baseline;
+            align-items: flex-start;
+            justify-content: space-between;
             gap: 8px;
         }
 
         .repo-title {
             color: var(--text-main);
+            font-family: var(--font-mono);
+            font-size: 13px;
             font-weight: 700;
+            word-break: break-word;
         }
 
         .repo-tag {
+            font-family: var(--font-mono);
             font-size: 10px;
             color: var(--text-dim);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1px 6px;
+            white-space: nowrap;
         }
 
         .repo-tag.public {
-            color: var(--purple);
+            color: var(--accent);
+            border-color: rgba(153, 0, 255, 0.45);
+            background: rgba(153, 0, 255, 0.12);
         }
 
         .repo-desc {
             color: var(--text-dim);
             font-size: 12px;
-            margin: 3px 0 4px;
+            line-height: 1.55;
+            margin-top: 6px;
+        }
+
+        .repo-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            padding-top: 8px;
+            border-top: 1px dashed var(--border-color);
+            font-family: var(--font-mono);
+            font-size: 11px;
+        }
+
+        .repo-lang {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-dim);
+        }
+
+        .lang-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .lang-java {
+            background: #e08243;
+        }
+
+        .lang-javascript {
+            background: #f1e05a;
+        }
+
+        .lang-css {
+            background: #c678dd;
+        }
+
+        .lang-python {
+            background: #56b6c2;
+        }
+
+        .repo-link {
+            font-size: 11px;
+            white-space: nowrap;
         }
 
         .log-entry {
@@ -290,29 +387,31 @@
         </nav>
 
         <section id="view-about" class="active">
-            <p>haiii im techy, a high school freshman tinkering with code, tech, and weird things since 2019 (that was
+            <p>hello there, im techy (technoz3n), a high school student whos been messing with code, tech, and other various things since 2019 (that was
                 <span class="days-2019-val">...</span> days ago!)</p>
-            <p>started with scratch, moved through web apps, minecraft bedrock scripting, and experiment now with
-                javascript, java, and anything else, really! (fun fact, even though python is the easiest language some
-                say, i still dont know it :c) i mostly just fork/remix open-source projects or build hyper-specific
-                utilities i need.</p>
-
+            <p>like everyone, i started with scratch. but then i moved through web apps, and minecraft bedrock scripting.
+                i experiment now with java, and anything else, really! (also even though python is the easiest language some
+                say, i still dont know it fully, probably because ive never had to write anything in it)
+                i mostly just fork open-source projects or build hyper-specific utilities i need
+            </p>
             <h2>games i like/have played</h2>
-            <p class="taglist"><strong>ultrakill</strong> · anything in the source, goldsrc, half life (blast pit
-                green!), or portal universe · minecraft · oneshot · kinitopet · postal 2 · buckshot roulette · doki doki
+            <p class="taglist"><strong>ultrakill</strong> · anything in the source, goldsrc, half life, or portal universe · minecraft · oneshot · kinitopet · postal 2 · buckshot roulette · doki doki
                 literature club · geometry dash (i suck ass) · class of 09 · 7 days to die</p>
-
+                <p class="taglist">(this isnt an exhaustive list, you may check my steam profile for a fuller list)</p>
             <h2>musiiiic</h2>
             <p class="taglist">most absurd rotation you have heard: <strong>tool</strong>, <strong>heaven pierce
                     her</strong>, <strong>the weeknd (house of balloons / kiss land era)</strong>, <strong>master boot
                     record / keygen church</strong>, <strong>aphex twin</strong>, <strong>deftones</strong>,
                 <strong>pitchshifter</strong>, <strong>limp bizkit, kelly bailey, sean terry, kevin sherwood</strong>,
                 if you want to see the entire discography though, head over to <button class="nav-link"
-                    onclick="switchTab('nodes')" style="display:inline; padding:0;; font-family: var(--font-main);"><u>my socials ↗</u></button></p>
+                    onclick="switchTab('nodes')" style="display:inline; padding:0; font-family: var(--font-main);"><u>my socials ↗</u></button></p>
         </section>
 
         <section id="view-shrine">
-            <p>stuff i (or others) have made and messed with</p>
+            <div class="projects-intro">
+                <p>stuff i (or others) have made and messed with</p>
+                <span class="repo-count" id="repo-count">8 projects</span>
+            </div>
             <div class="repo-filters">
                 <button class="active" onclick="filterRepos('all', this)">all</button>
                 <button onclick="filterRepos('javascript', this)">js</button>
@@ -320,57 +419,118 @@
                 <button onclick="filterRepos('python', this)">python</button>
                 <button onclick="filterRepos('css', this)">css</button>
             </div>
-            <div class="repo" data-lang="java">
-                <div class="repo-hdr"><span class="repo-title">arsenal</span><span class="repo-tag public">public</span>
-                </div>
-                <div class="repo-desc">minecraft mod focused on uh idk</div>
-                <a href="https://github.com/technoz3n/arsenal" target="_blank">repo ↗</a>
-            </div>
-            <div class="repo" data-lang="javascript">
-                <div class="repo-hdr"><span class="repo-title">techys-arras</span><span
-                        class="repo-tag public">public</span></div>
-                <div class="repo-desc">arras io mod :3c</div>
-                <a href="https://github.com/technoz3n/techys-arras" target="_blank">repo ↗</a>
-            </div>
-            <div class="repo" data-lang="java">
-                <div class="repo-hdr"><span class="repo-title">UnfuckedLAN</span><span
-                        class="repo-tag public">public</span></div>
-                <div class="repo-desc">forces offline mode on integrated servers because wrapper mods are garbage</div>
-                <a href="https://github.com/technoz3n/UnfuckedLAN" target="_blank">repo ↗</a>
-            </div>
-            <div class="repo" data-lang="java">
-                <div class="repo-hdr"><span class="repo-title">hack-n-slash</span><span
-                        class="repo-tag public">public</span></div>
-                <div class="repo-desc">minecraft mod focused on combat</div>
-                <a href="https://github.com/technoz3n/hack-n-slash" target="_blank">repo ↗</a>
-            </div>
+            <div class="repo-grid">
+                <article class="repo" data-lang="java">
+                    <div>
+                        <div class="repo-hdr">
+                            <span class="repo-title">arsenal</span>
+                            <span class="repo-tag public">public</span>
+                        </div>
+                        <div class="repo-desc">minecraft mod focused on uh idk</div>
+                    </div>
+                    <div class="repo-footer">
+                        <span class="repo-lang"><span class="lang-dot lang-java"></span>java</span>
+                        <a class="repo-link" href="https://github.com/technoz3n/arsenal" target="_blank">repo ↗</a>
+                    </div>
+                </article>
 
-            <div class="repo" data-lang="javascript">
-                <div class="repo-hdr"><span class="repo-title">ultragreed</span><span
-                        class="repo-tag public">public</span></div>
-                <div class="repo-desc">discord quest tracking bot with webhook alerts</div>
-                <a href="https://github.com/technoz3n/ultragreed" target="_blank">repo ↗</a>
-            </div>
+                <article class="repo" data-lang="javascript">
+                    <div>
+                        <div class="repo-hdr">
+                            <span class="repo-title">techys-arras</span>
+                            <span class="repo-tag public">public</span>
+                        </div>
+                        <div class="repo-desc">arras io mod :3c</div>
+                    </div>
+                    <div class="repo-footer">
+                        <span class="repo-lang"><span class="lang-dot lang-javascript"></span>javascript</span>
+                        <a class="repo-link" href="https://github.com/technoz3n/techys-arras" target="_blank">repo ↗</a>
+                    </div>
+                </article>
 
-            <div class="repo" data-lang="css">
-                <div class="repo-hdr"><span class="repo-title">firefox-theme</span><span
-                        class="repo-tag public">public</span></div>
-                <div class="repo-desc">my firefox theme. nuff said</div>
-                <a href="https://github.com/technoz3n/firefox-theme" target="_blank">repo ↗</a>
-            </div>
+                <article class="repo" data-lang="java">
+                    <div>
+                        <div class="repo-hdr">
+                            <span class="repo-title">UnfuckedLAN</span>
+                            <span class="repo-tag public">public</span>
+                        </div>
+                        <div class="repo-desc">forces offline mode on integrated servers because wrapper mods are garbage</div>
+                    </div>
+                    <div class="repo-footer">
+                        <span class="repo-lang"><span class="lang-dot lang-java"></span>java</span>
+                        <a class="repo-link" href="https://github.com/technoz3n/UnfuckedLAN" target="_blank">repo ↗</a>
+                    </div>
+                </article>
 
-            <div class="repo" data-lang="css">
-                <div class="repo-hdr"><span class="repo-title">rosepine-discord-fixed</span><span
-                        class="repo-tag public">public</span></div>
-                <div class="repo-desc">fixes sidebar and search contrast issues for the rosé pine discord theme</div>
-                <a href="https://github.com/technoz3n/rosepine-discord-fixed" target="_blank">repo ↗</a>
-            </div>
+                <article class="repo" data-lang="java">
+                    <div>
+                        <div class="repo-hdr">
+                            <span class="repo-title">hack-n-slash</span>
+                            <span class="repo-tag public">public</span>
+                        </div>
+                        <div class="repo-desc">minecraft mod focused on combat</div>
+                    </div>
+                    <div class="repo-footer">
+                        <span class="repo-lang"><span class="lang-dot lang-java"></span>java</span>
+                        <a class="repo-link" href="https://github.com/technoz3n/hack-n-slash" target="_blank">repo ↗</a>
+                    </div>
+                </article>
 
-            <div class="repo" data-lang="python">
-                <div class="repo-hdr"><span class="repo-title">wine-app-builder</span><span
-                        class="repo-tag public">public</span></div>
-                <div class="repo-desc">generates native linux menu entries for Windows .exe files easily</div>
-                <a href="https://github.com/technoz3n/wine-app-builder" target="_blank">repo ↗</a>
+                <article class="repo" data-lang="javascript">
+                    <div>
+                        <div class="repo-hdr">
+                            <span class="repo-title">ultragreed</span>
+                            <span class="repo-tag public">public</span>
+                        </div>
+                        <div class="repo-desc">discord quest tracking bot with webhook alerts</div>
+                    </div>
+                    <div class="repo-footer">
+                        <span class="repo-lang"><span class="lang-dot lang-javascript"></span>javascript</span>
+                        <a class="repo-link" href="https://github.com/technoz3n/ultragreed" target="_blank">repo ↗</a>
+                    </div>
+                </article>
+
+                <article class="repo" data-lang="css">
+                    <div>
+                        <div class="repo-hdr">
+                            <span class="repo-title">firefox-theme</span>
+                            <span class="repo-tag public">public</span>
+                        </div>
+                        <div class="repo-desc">my firefox theme. nuff said</div>
+                    </div>
+                    <div class="repo-footer">
+                        <span class="repo-lang"><span class="lang-dot lang-css"></span>css</span>
+                        <a class="repo-link" href="https://github.com/technoz3n/firefox-theme" target="_blank">repo ↗</a>
+                    </div>
+                </article>
+
+                <article class="repo" data-lang="css">
+                    <div>
+                        <div class="repo-hdr">
+                            <span class="repo-title">rosepine-discord-fixed</span>
+                            <span class="repo-tag public">public</span>
+                        </div>
+                        <div class="repo-desc">fixes sidebar and search contrast issues for the rosé pine discord theme</div>
+                    </div>
+                    <div class="repo-footer">
+                        <span class="repo-lang"><span class="lang-dot lang-css"></span>css</span>
+                        <a class="repo-link" href="https://github.com/technoz3n/rosepine-discord-fixed" target="_blank">repo ↗</a>
+                    </div>
+                </article>
+
+                <article class="repo" data-lang="python">
+                    <div>
+                        <div class="repo-hdr">
+                            <span class="repo-title">wine-app-builder</span>
+                            <span class="repo-tag public">public</span>
+                        </div>
+                        <div class="repo-desc">generates native linux menu entries for Windows .exe files easily</div>
+                    </div>
+                    <div class="repo-footer">
+                        <span class="repo-lang"><span class="lang-dot lang-python"></span>python</span>
+                        <a class="repo-link" href="https://github.com/technoz3n/wine-app-builder" target="_blank">repo ↗</a>
+                    </div>
+                </article>
             </div>
         </section>
 
@@ -383,7 +543,7 @@
             <div class="log-entry">
                 <span class="log-date">[2026-09-28]</span>
                 <strong>kisslandified the entire site</strong>
-                <p style="color: var(--text-dim); font-size: 12px;">the city of angels <3< /p>
+                <p style="color: var(--text-dim); font-size: 12px;">the city of angels &lt;3</p>
             </div>
             <div class="log-entry">
                 <span class="log-date">[2026-09-28]</span>
@@ -569,13 +729,19 @@
         }
 
         function filterRepos(lang, btnEl) {
-            const rows = document.querySelectorAll('.repo');
+            const cards = document.querySelectorAll('.repo-grid .repo');
+            const counter = document.getElementById('repo-count');
             document.querySelectorAll('.repo-filters button').forEach(b => b.classList.remove('active'));
             if (btnEl) btnEl.classList.add('active');
-            rows.forEach(row => {
-                const match = lang === 'all' || row.dataset.lang === lang;
-                row.style.display = match ? 'block' : 'none';
+            let visibleCount = 0;
+            cards.forEach(card => {
+                const match = lang === 'all' || card.dataset.lang === lang;
+                card.style.display = match ? 'flex' : 'none';
+                if (match) visibleCount++;
             });
+            if (counter) {
+                counter.textContent = visibleCount === 1 ? '1 project' : `${visibleCount} projects`;
+            }
         }
 
         const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
