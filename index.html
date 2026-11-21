@@ -42,10 +42,10 @@
             background-size: cover;
             color: var(--text-main);
             font-family: var(--font-main);
-            font-size: 13px;
+            font-size: 15px;
             font-weight: 500;
             line-height: 1.7;
-            padding: 40px 20px 20px;
+            padding: 80px 24px 28px;
             text-shadow: 0 0 4px rgba(195, 0, 255, 0.15);
         }
 
@@ -61,23 +61,23 @@
         }
 
         .wrap {
-            max-width: 640px;
+            max-width: 780px;
             margin: 0 auto;
         }
 
         .doodle {
-            font-size: 10px;
+            font-size: 12px;
             line-height: 1.1;
             color: var(--purple);
             white-space: pre;
             float: right;
-            margin-left: 16px;
+            margin-left: 18px;
             user-select: none;
             filter: drop-shadow(0 0 5px var(--accent-glow));
         }
 
         .site-title {
-            font-size: 20px;
+            font-size: 24px;
             font-weight: 700;
             color: var(--text-main);
             text-shadow: 0 0 10px var(--accent-glow);
@@ -85,15 +85,15 @@
 
         .sub-title {
             color: var(--accent);
-            font-size: 11px;
+            font-size: 13px;
             margin-top: 2px;
             letter-spacing: 0.5px;
         }
 
         .status-line {
-            margin-top: 10px;
+            margin-top: 12px;
             color: var(--text-dim);
-            font-size: 12px;
+            font-size: 13px;
         }
 
         .status-line span {
@@ -101,19 +101,20 @@
         }
 
         nav {
-            margin: 22px 0;
-            padding: 10px 0;
-            border-top: 1px dashed var(--border-color);
-            border-bottom: 1px dashed var(--border-color);
+            margin: 14px 0;
+            padding: 8px 0 8px;
+            border-top: 1px dotted var(--border-color);
+            border-bottom: 1px dotted var(--border-color);
         }
 
         .nav-link {
+            position: relative;
             background: none;
             border: none;
             font-family: var(--font-mono);
-            font-size: 13px;
+            font-size: 15px;
             color: var(--text-dim);
-            margin-right: 16px;
+            margin-right: 18px;
             padding: 0;
             cursor: pointer;
             transition: color 0.2s;
@@ -124,6 +125,21 @@
             color: var(--purple);
             text-shadow: 0 0 6px var(--accent-glow);
         }
+
+        button.nav-link.active::before {
+            content: "";
+            position: absolute;
+            top: -7px;
+            left: -2px;
+            right: -2px;
+            height: 9px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 16' preserveAspectRatio='none'%3E%3Cpath d='M 4 15 L 4 3 L 22 12 L 78 12 L 96 3 L 96 15' fill='none' stroke='%239900ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            filter: drop-shadow(0 0 4px rgba(195, 0, 255, 0.5));
+            pointer-events: none;
+        }
+
         section {
             display: none;
         }
@@ -133,10 +149,10 @@
         }
 
         h2 {
-            font-size: 12px;
+            font-size: 14px;
             color: var(--accent);
             letter-spacing: 0.5px;
-            margin: 22px 0 8px;
+            margin: 24px 0 8px;
             text-shadow: 0 0 6px var(--accent-glow);
         }
 
@@ -145,7 +161,7 @@
         }
 
         p {
-            max-width: 58ch;
+            max-width: 68ch;
         }
 
         .taglist {
@@ -163,7 +179,7 @@
             justify-content: space-between;
             align-items: baseline;
             gap: 8px 12px;
-            margin-bottom: 14px;
+            margin-bottom: 16px;
         }
 
         .projects-intro p {
@@ -172,15 +188,15 @@
 
         .repo-count {
             font-family: var(--font-mono);
-            font-size: 11px;
+            font-size: 12px;
             color: var(--text-dim);
         }
 
         .repo-filters {
             display: flex;
             flex-wrap: wrap;
-            gap: 6px;
-            margin-bottom: 16px;
+            gap: 8px;
+            margin-bottom: 18px;
         }
 
         .repo-filters button {
@@ -189,8 +205,8 @@
             border-radius: 8px;
             font-family: var(--font-mono);
             color: var(--text-dim);
-            font-size: 11px;
-            padding: 4px 10px;
+            font-size: 12px;
+            padding: 5px 12px;
             cursor: pointer;
             transition: all 0.2s ease;
         }
@@ -209,10 +225,10 @@
         .repo-grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 12px;
+            gap: 14px;
         }
 
-        @media (max-width: 560px) {
+        @media (max-width: 600px) {
             .repo-grid {
                 grid-template-columns: 1fr;
             }
@@ -222,11 +238,11 @@
             background: rgba(16, 13, 25, 0.9);
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            padding: 13px 14px;
+            padding: 15px 16px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            gap: 10px;
+            gap: 12px;
             transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
         }
 
@@ -244,18 +260,18 @@
         .repo-title {
             color: var(--text-main);
             font-family: var(--font-mono);
-            font-size: 13px;
+            font-size: 15px;
             font-weight: 700;
             word-break: break-word;
         }
 
         .repo-tag {
             font-family: var(--font-mono);
-            font-size: 10px;
+            font-size: 11px;
             color: var(--text-dim);
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            padding: 1px 6px;
+            padding: 1px 7px;
             white-space: nowrap;
         }
 
@@ -267,7 +283,7 @@
 
         .repo-desc {
             color: var(--text-dim);
-            font-size: 12px;
+            font-size: 13px;
             line-height: 1.55;
             margin-top: 6px;
         }
@@ -277,10 +293,10 @@
             align-items: center;
             justify-content: space-between;
             gap: 8px;
-            padding-top: 8px;
+            padding-top: 9px;
             border-top: 1px dashed var(--border-color);
             font-family: var(--font-mono);
-            font-size: 11px;
+            font-size: 12px;
         }
 
         .repo-lang {
@@ -291,8 +307,8 @@
         }
 
         .lang-dot {
-            width: 7px;
-            height: 7px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
             display: inline-block;
         }
@@ -314,19 +330,19 @@
         }
 
         .repo-link {
-            font-size: 11px;
+            font-size: 12px;
             white-space: nowrap;
         }
 
         .log-entry {
-            margin-bottom: 18px;
-            padding-left: 10px;
+            margin-bottom: 20px;
+            padding-left: 12px;
             border-left: 1px solid var(--border-color);
         }
 
         .log-date {
             color: var(--purple);
-            font-size: 11px;
+            font-size: 12px;
             display: block;
             margin-bottom: 2px;
         }
@@ -334,32 +350,33 @@
         .links-row {
             display: flex;
             flex-wrap: wrap;
-            gap: 4px 16px;
+            gap: 6px 20px;
+            font-size: 14px;
         }
 
         .badges-strip {
-            margin-top: 30px;
+            margin-top: 32px;
             display: flex;
             flex-wrap: wrap;
-            gap: 6px;
+            gap: 8px;
             opacity: 0.85;
             filter: saturate(1.3);
         }
 
         .badges-strip img {
-            width: 88px;
-            height: 31px;
+            width: 102px;
+            height: 36px;
             border: 1px solid var(--border-color);
         }
 
         footer {
-            margin-top: 24px;
-            padding-top: 10px;
+            margin-top: 26px;
+            padding-top: 12px;
             border-top: 1px dashed var(--border-color);
             display: flex;
             justify-content: space-between;
             color: var(--text-dim);
-            font-size: 11px;
+            font-size: 12px;
         }
     </style>
 </head>
@@ -538,23 +555,23 @@
             <div class="log-entry">
                 <span class="log-date">[2026-11-9]</span>
                 <strong>hi pruple</strong>
-                <p style="color: var(--text-dim); font-size: 12px;">best color btw</p>
+                <p style="color: var(--text-dim); font-size: 13px;">best color btw</p>
             </div>
             <div class="log-entry">
                 <span class="log-date">[2026-09-28]</span>
                 <strong>kisslandified the entire site</strong>
-                <p style="color: var(--text-dim); font-size: 12px;">the city of angels &lt;3</p>
+                <p style="color: var(--text-dim); font-size: 13px;">the city of angels &lt;3</p>
             </div>
             <div class="log-entry">
                 <span class="log-date">[2026-09-28]</span>
                 <strong>bye bye old new website design</strong>
-                <p style="color: var(--text-dim); font-size: 12px;">told you, but i actually like this one now way more
+                <p style="color: var(--text-dim); font-size: 13px;">told you, but i actually like this one now way more
                 </p>
             </div>
             <div class="log-entry">
                 <span class="log-date">[2026-09-19]</span>
                 <strong>bye bye old website design</strong>
-                <p style="color: var(--text-dim); font-size: 12px;">self explanatory i guarantee this one wont last very
+                <p style="color: var(--text-dim); font-size: 13px;">self explanatory i guarantee this one wont last very
                     long as well</p>
             </div>
         </section>
@@ -563,7 +580,7 @@
             <div class="log-entry">
                 <span class="log-date">november [11/16 - 11/21]</span>
                 <strong>i listened to music for 874 minutes this week</strong>
-                <p style="font-size: 12px; padding-left: 10px">the top artists this week were</p>
+                <p style="font-size: 13px; padding-left: 10px">the top artists this week were</p>
                 <p style="padding-left: 20px;">1. limp bizkit</p>
                 <p style="padding-left: 20px;">2. rage aginst the machine</p>
                 <p style="padding-left: 20px;">3. tool</p>
@@ -574,13 +591,13 @@
                 <p style="padding-left: 20px;">8. heaven pierce her</p>
                 <p style="padding-left: 20px;">9. dead kennedys</p>
                 <p style="padding-left: 20px;">10. primer 55</p>
-                <p style="font-size: 12px; padding-left: 10px">29% of my music listening was tool</p>
+                <p style="font-size: 13px; padding-left: 10px">29% of my music listening was tool</p>
                 <p><strong>i spent 328 minutes with 1990s artists like slaves on dope and tool</strong></p>
             </div>
             <div class="log-entry">
                 <span class="log-date">november [11/9 - 11/15]</span>
                 <strong>i listened to music for 681 minutes this week</strong>
-                <p style="font-size: 12px; padding-left: 10px">the top artists this week were</p>
+                <p style="font-size: 13px; padding-left: 10px">the top artists this week were</p>
                 <p style="padding-left: 20px;">1. tool</p>
                 <p style="padding-left: 20px;">2. deftones</p>
                 <p style="padding-left: 20px;">3. limp bizkit</p>
@@ -595,7 +612,7 @@
             <div class="log-entry">
                 <span class="log-date">november [11/2 - 11/8]</span>
                 <strong>i listened to music for 2,301 minutes this week</strong>
-                <p style="font-size: 12px; padding-left: 10px">the top artists this week were</p>
+                <p style="font-size: 13px; padding-left: 10px">the top artists this week were</p>
                 <p style="padding-left: 20px;">1. tool</p>
                 <p style="padding-left: 20px;">2. rage against the machine</p>
                 <p style="padding-left: 20px;">3. the weeknd</p>
@@ -605,7 +622,7 @@
             <div class="log-entry">
                 <span class="log-date">october [10/26 - 11/1]</span>
                 <strong>i listened to music for 2,881 minutes this week</strong>
-                <p style="font-size: 12px; padding-left: 10px">the top artists this week were</p>
+                <p style="font-size: 13px; padding-left: 10px">the top artists this week were</p>
                 <p style="padding-left: 20px;">1. the weeknd</p>
                 <p style="padding-left: 20px;">2. tool</p>
                 <p style="padding-left: 20px;">3. that handsome devil</p>
@@ -615,7 +632,7 @@
             <div class="log-entry">
                 <span class="log-date">october [10/19 - 10/25]</span>
                 <strong>i listened to music for 1,439 minutes this week</strong>
-                <p style="font-size: 12px; padding-left: 10px">i spent 362 minutes listening to these three albums</p>
+                <p style="font-size: 13px; padding-left: 10px">i spent 362 minutes listening to these three albums</p>
                 <p style="padding-left: 20px;">1. kiss land</p>
                 <p style="padding-left: 20px;">2. lateralus</p>
                 <p style="padding-left: 20px;">3. ultrakill: fraud</p>
@@ -623,7 +640,7 @@
             <div class="log-entry">
                 <span class="log-date">october [10/12 - 10/18]</span>
                 <strong>i listened to music for 800 minutes this week</strong>
-                <p style="font-size: 12px; padding-left: 10px">i spent 226 minutes listening to these three albums</p>
+                <p style="font-size: 13px; padding-left: 10px">i spent 226 minutes listening to these three albums</p>
                 <p style="padding-left: 20px;">1. ultrakill: infinite hyperdeath</p>
                 <p style="padding-left: 20px;">2. lateralus</p>
                 <p style="padding-left: 20px;">3. undertow</p>
@@ -632,15 +649,15 @@
             <div class="log-entry">
                 <span class="log-date">october [10/5 - 10/11]</span>
                 <strong>i listened to music for 816 minutes this week</strong>
-                <p style="font-size: 12px; padding-left: 10px">i was deep in the 2000s</p>
-                <p style="font-size: 12px; padding-left: 10px">i spent 307 minutes with artists such as tool</p>
+                <p style="font-size: 13px; padding-left: 10px">i was deep in the 2000s</p>
+                <p style="font-size: 13px; padding-left: 10px">i spent 307 minutes with artists such as tool</p>
                 <p><strong>i spent three hours this week with tool</strong></p>
             </div>
             <div class="log-entry">
                 <span class="log-date">september [09/28 - 10/04]</span>
                 <strong>i listened to music for 5,711 minutes this month</strong>
-                <p style="font-size: 12px; padding-left: 20px">i spent 101 minutes listening to ULTRAKILL: FRAUD</p>
-                <p style="font-size: 12px; padding-left: 20px">i replayed In Absentia ΛΟΓΟΣ 6 times</p>
+                <p style="font-size: 13px; padding-left: 20px">i spent 101 minutes listening to ULTRAKILL: FRAUD</p>
+                <p style="font-size: 13px; padding-left: 20px">i replayed In Absentia ΛΟΓΟΣ 6 times</p>
                 <p><strong>my top artists were:</strong></p>
                 <p style="padding-left: 20px;">1. heaven pierce her</p>
                 <p style="padding-left: 20px;">2. tool</p>
